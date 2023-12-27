@@ -1,0 +1,17 @@
+# NOTE: Make sure the cpus are not heavily loaded during the test by for example the minecraft server of firefox
+
+# Profiling Test 1
+# Description: Run with gprof and measure during 10 secs with continous movement of the mouse during the whole period.
+
+ * RESULT:
+
+# Profiling Test 2
+# Description: Run with gprof and measure during 10 secs with no movement of the  mouse or keyboard
+
+ * RESULT:
+
+ 
+
+
+
+

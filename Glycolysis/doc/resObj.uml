@@ -1,0 +1,91 @@
+@startuml
+
+class  BoneInfo {
+  glm::mat4 BoneOffset
+  glm::mat4 FinalTransformation
+  }
+
+
+class VertexBoneData {
+  GLuint IDs[NUM_BONES_PER_VERTEX];
+  float Weights[NUM_BONES_PER_VERTEX];
+
+  VertexBoneData()
+
+  void AddBoneData(uint BoneID, float Weight);
+}
+
+class obj {
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals; // Won't be used at the moment.
+  std::vector<GLuint> indices;
+  std::vector<VertexBoneData> bones;
+	GLfloat meshColor[4];
+
+
+  map<string, GLuint> m_BoneMapping; // maps a bone name to its index
+  GLuint m_NumBones;
+  vector<BoneInfo> m_BoneInfo;
+}
+
+note right of obj 
+  One single sub mesh
+end note
+
+class buffer {
+  GLuint vertices; //identifies the generated buffer that holds vertices
+  GLuint uvs;      //identifies the generated buffer that holds uvs
+  GLuint normals;  //identifies the generated buffer that holds normals
+  GLuint indices;  //identifies the generated buffer that holds indices
+  GLuint bones;  //identifies the generated buffer that holds bones
+  GLuint sizeOfVertices;
+  GLuint sizeOfIndices;
+  GLfloat meshColor[4];
+  glm::vec3 trans;
+  }
+
+note right of buffer
+  OpenGL Buffer IDs
+end note
+
+class Mesh {
+  std::vector<obj*> mesh;
+  std::vector<buffer*> buf;
+
+
+  GLuint bonesBuffer;  //identifies the generated buffer that holds bones
+
+  glm::mat4 m_GlobalInverseTransform;
+
+  const aiScene * resScene = nullptr;
+
+  Mesh()
+
+  GLuint FindPosition(float AnimationTime, const aiNodeAnim* pNodeAnim);
+  GLuint FindRotation(float AnimationTime, const aiNodeAnim* pNodeAnim);
+  GLuint FindScaling(float AnimationTime, const aiNodeAnim* pNodeAnim);
+  void CalcInterpolatedPosition(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+  void CalcInterpolatedRotation(aiQuaternion& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+  void CalcInterpolatedScaling(aiVector3D& Out, float AnimationTime, const aiNodeAnim* pNodeAnim);
+  void ReadNodeHeirarchy(float AnimationTime, const aiNode* pNode, const glm::mat4& ParentTransform);
+  const aiNodeAnim* FindNodeAnim(const aiAnimation* pAnimation, const string NodeName);
+  void BoneTransform(float TimeInSeconds, vector<glm::mat4>& Transforms);
+}
+
+note right of Mesh
+ All meshes in a resource file
+end note
+
+class ResObj {
+  Mesh meshArray[256];
+  const aiScene * resScene;
+}
+
+
+obj *-- BoneInfo 
+obj *-- VertexBoneData 
+Mesh *-- obj
+Mesh *-- buffer 
+ResObj *-- Mesh
+@enduml

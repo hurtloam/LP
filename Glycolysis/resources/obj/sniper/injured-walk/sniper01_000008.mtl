@@ -1,0 +1,13 @@
+# Blender MTL File: 'sniper-inj-walk.blend'
+# Material Count: 1
+
+newmtl packed_material_0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.366025 0.147627 0.006635
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd E:\Documents\projects\objects\fuse\sniper\diffuse_packed0.png
+map_Bump E:\\Documents\\projects\\objects\\fuse\\sniper\\normal_packed0.png

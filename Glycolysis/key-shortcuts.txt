@@ -1,0 +1,63 @@
+Key Short cuts
+
+
+** Object handling **
+t      - Delete object
+z      - Delete text
+c      - Create Wall
+p      - Create Plate
+g      - Create Glucose molecule
+b      - Create text
+i      - Create MenuContainer
+q
+v      - Create Wall Cube
+m
+n      - Create Plane
+<r,L-MOUSE-Btn>      - Rotate object
+<x, R-MouseButton, MouseMove> 	- Move object in z-plane
+<L-SHFT, L-CTRL, LeftMouseButton, MouseMove> Move object in x-y- plane
+
+
+** Viewports **
+<1> switch to two viewports (resource view on the right)
+<2> switch to one (original) viewport
+<3> switch to two viewports (resource view on the left)
+
+** Save/Load world **
+<8> Load the saved world
+<9> Save the current World
+
+** Camera ** 
+<F1>  - Print camera position
+<4>   - Print viewMatrix info for the View 
+<F10> - Slow down movement of camera
+<m,MouseMove> - Rotate the camera in any direction
+<u> - move the camera forward
+<h> - move the camera left
+<j> - move the camera backward
+<k> - move the camera right
+
+<arrow-up>     - strafe a step up
+<arrow-Down>   - strafe a step Down
+<arrow-Left>   - strafe a step Left
+<arrow-Right>  - strafe a step Right
+
+
+** Grid **
+<F2>           - Activate coordinate matrix
+<F3>           - Move grid positive on Z-axis
+<L-SHFT,F3>    - Move grid negative on Z-axis
+<x,F2>         - to activate grid in resource frame
+<x,F3>         - move grid positive on Z-axis in resource frame
+<x,L-SHIFT,F3> - move grid negative on Z-axis in resource frame
+F8             - Activate/Deactivate the resource viewport. This means
+                 most commands will only affect the resource viewport. 
+F9             - Activate Skybox Stage
+Ctrl
+
+** Light Positions **
+Home     - Set light position
+End      - Set light position
+Delete   - Set light position
+PageDown - Set light position
+

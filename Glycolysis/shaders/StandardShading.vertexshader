@@ -1,0 +1,86 @@
+#version 330 core
+
+// Input vertex data, different for all executions of this shader.
+layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 1) in vec2 vertexUV;
+layout(location = 2) in vec3 vertexNormal_modelspace;
+layout(location = 3) in ivec4 BoneIDs;
+layout(location = 4) in vec4 Weights;
+
+// Output data ; will be interpolated for each fragment.
+// vertex shader will take these as input
+out vec2 UV;
+out vec3 Position_worldspace;
+out vec3 Normal_cameraspace;
+out vec3 EyeDirection_cameraspace;
+out vec3 LightDirection_cameraspace;
+
+// PEB: BONES
+const int MAX_BONES = 100;
+
+// Values that stay constant for the whole mesh.
+uniform mat4 MVP;
+uniform mat4 V;
+uniform mat4 M;
+uniform vec3 LightPosition_worldspace;
+uniform int isAnimation;
+
+// PEB: BONES
+uniform mat4 gBones[MAX_BONES];
+
+void main(){
+
+  // PEB: BONES
+   mat4 BoneTransform  = gBones[BoneIDs[0]] * Weights[0];
+        BoneTransform += gBones[BoneIDs[1]] * Weights[1];
+        BoneTransform += gBones[BoneIDs[2]] * Weights[2];
+        BoneTransform += gBones[BoneIDs[3]] * Weights[3];
+ 
+  // PEB: BONES
+  vec4 PosL;
+ 	if (isAnimation == 1)
+  	{
+     PosL = BoneTransform * vec4(vertexPosition_modelspace, 1.0);
+     //PosL = vec4(vertexPosition_modelspace, 1.0) * BoneTransform;
+  	}
+  	else
+  	{
+     PosL = vec4(vertexPosition_modelspace, 1.0);
+  	}
+   //PosL = vec4(vertexPosition_modelspace, 1.0);
+	// Output position of the vertex, in clip space : MVP * position
+	// PEB: BONES
+	//gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
+	gl_Position =  MVP * PosL;
+	 
+	// Position of the vertex, in worldspace : M * position
+	// PEB: BONES
+	//Position_worldspace = (M * vec4(vertexPosition_modelspace,1)).xyz;
+	Position_worldspace = (M * PosL).xyz;
+	
+	// Vector that goes from the vertex to the camera, in camera space.
+	// In camera space, the camera is at the origin (0,0,0).
+	// PEB: BONES
+	//vec3 vertexPosition_cameraspace = ( V * M * vec4(vertexPosition_modelspace,1)).xyz;
+	vec3 vertexPosition_cameraspace = ( V * M * PosL).xyz;
+	
+	EyeDirection_cameraspace = vec3(0,0,0) - vertexPosition_cameraspace;
+
+	// Vector that goes from the vertex to the light, in camera space. M is ommited because it's identity.
+	vec3 LightPosition_cameraspace = ( V * vec4(LightPosition_worldspace,1)).xyz;
+	LightDirection_cameraspace = LightPosition_cameraspace + EyeDirection_cameraspace;
+	
+	// Normal of the the vertex, in camera space
+	// PEB: BONES
+	if (isAnimation == 1) {
+	  vec4 NormalL = BoneTransform * vec4(vertexNormal_modelspace, 0.0);
+	  Normal_cameraspace = (V * M * NormalL).xyz;
+	} 
+	else { 
+    Normal_cameraspace = ( V * M * vec4(vertexNormal_modelspace,0)).xyz; // Only correct if ModelMatrix does not scale the model ! Use its inverse transpose if not.
+	}
+  //Normal_cameraspace = ( V * M * vec4(vertexNormal_modelspace,0)).xyz;
+	// UV of the vertex. No special space for this one.
+	UV = vertexUV;
+}
+

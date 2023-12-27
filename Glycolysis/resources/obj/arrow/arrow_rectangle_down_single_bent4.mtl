@@ -1,0 +1,11 @@
+# Blender MTL File: 'arrow_rectangle_down_single_bent4.blend'
+# Material Count: 1
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd /home/peter/projects/workspace-cpp2_git/Glycolysis/uvlayout_pattern1.bmp

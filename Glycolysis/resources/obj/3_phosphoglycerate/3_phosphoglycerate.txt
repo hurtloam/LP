@@ -1,0 +1,16 @@
+ChemSpider:
+http://www.chemspider.com/Chemical-Structure.23096232.html?rid=b5099a81-ab6a-43d9-a566-53c5b04e1a0b&page_num=0
+
+Names:
+(2R)-2-Hydroxy-3-(phosphonatooxy)propanoat [German] [ACD/IUPAC Name]
+(2R)-2-Hydroxy-3-(phosphonatooxy)propanoate [ACD/IUPAC Name]
+(2R)-2-Hydroxy-3-(phosphonatooxy)propanoate [French] [ACD/IUPAC Name]
+Propanoic acid, 2-hydroxy-3-(phosphonooxy)-, ion(3-), (2R)- [ACD/Index Name]
+3-Phospho-D-glycerate
+3-phospho-d-glyceric acid
+3-phosphoglycerate
+3-phosphonato-D-glycerate 
+
+
+Wiki Description (https://en.wikipedia.org/wiki/3-Phosphoglyceric_acid)
+3-Phosphoglyceric acid (3PG), or glycerate 3-phosphate (GP),[citation needed] is a biochemically significant 3-carbon molecule that is a metabolic intermediate in both glycolysis and the Calvin cycle. This chemical is often termed PGA when referring to the Calvin cycle. In the Calvin cycle, 3-Phosphoglycerate is the product of the spontaneous split of an unstable 6-carbon intermediate formed by CO2 fixation. Thus, two 3-phosphoglycerate molecules are produced for each molecule of CO2 fixed.

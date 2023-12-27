@@ -1,0 +1,6 @@
+#LINUX_VER := @uname -a |@perl -ne' print $1  if (/^.*? .*? (.*?) /)'
+# @echo '$(LINUX_VER)'
+#ifeq ($(LINUX_VER),"4.4.0-97-generic")
+#@echo "It works!"
+#LEARNING_P=$(HOME)/projects/workspace-cpp2_git
+#endif

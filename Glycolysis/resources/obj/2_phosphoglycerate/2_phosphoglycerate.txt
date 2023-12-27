@@ -1,0 +1,14 @@
+ChemSpider:
+http://www.chemspider.com/Chemical-Structure.3863259.html?rid=e60e879d-d9ca-402b-b411-5614d6c5df56&page_num=0
+
+Names:
+1-Carboxy-2-hydroxyethyl phosphate [ACD/IUPAC Name]
+1-Carboxy-2-hydroxyethylphosphat [German] [ACD/IUPAC Name]
+Glyceric acid 2-phosphate
+Phosphate de 1-carboxy-2-hydroxyéthyle [French] [ACD/IUPAC Name]
+Propanoic acid, 3-hydroxy-2-(phosphonooxy)-, ion(2-) [ACD/Index Name]
+2-phospho-D-glyceric acid*2-phospho-(R)-glycerate*2-phospho-(D)-glycerate*2-PGA*phosphoglycerate*2-phosphoglyceric acid*2-PG*2-P-glycerate*glycerate 2-phosphate*2-phospho-D-glycerate*2-P-D-glycerate*D-Glycerate 2-phosphate
+2-Phosphoglycerate 
+
+Wiki Description (https://en.wikipedia.org/wiki/2-Phosphoglyceric_acid)
+2-Phosphoglyceric acid (2PG), or 2-phosphoglycerate, is a glyceric acid which serves as the substrate in the ninth step of glycolysis. It is catalyzed by enolase into phosphoenolpyruvate (PEP), the penultimate step in the conversion of glucose to pyruvate.

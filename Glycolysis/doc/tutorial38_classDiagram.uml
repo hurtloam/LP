@@ -1,0 +1,47 @@
+@startuml
+
+class  BoneInfo {
+  glm::mat4 BoneOffset
+  glm::mat4 FinalTransformation
+  }
+
+
+class VertexBoneData {
+  GLuint IDs[NUM_BONES_PER_VERTEX];
+  float Weights[NUM_BONES_PER_VERTEX];
+
+  VertexBoneData()
+
+  void AddBoneData(uint BoneID, float Weight);
+}
+
+class Mesh {
+    GLuint m_VAO;
+    GLuint m_Buffers[NUM_VBs];
+    
+    vector<MeshEntry> m_Entries;
+    vector<Texture*> m_Textures;
+     
+    map<string,uint> m_BoneMapping; // maps a bone name to its index
+    uint m_NumBones;
+    vector<BoneInfo> m_BoneInfo;
+    Matrix4f m_GlobalInverseTransform;
+    
+    const aiScene* m_pScene;
+}
+
+note right of Mesh
+ All meshes in a resource file
+end note
+
+class InitFromScene {
+vector<Vector3f> Positions
+vector<Vector3f> Normals 
+vector<Vector2f> TexCoords
+vector <VertexBoneData> Bones
+vector uint Indices
+}
+
+Mesh *-- BoneInfo
+InitFromScene *-- VertexBoneData
+@enduml
