@@ -1,0 +1,6 @@
+Cloning into 'gtest'...
+fatal: invalid reference: master
+[31mCMake Error at /home/peter/program/assimp-3.3.1/test/gtest/tmp/gtest-gitclone.cmake:40 (message):
+  Failed to checkout tag: 'master'
+
+[0m

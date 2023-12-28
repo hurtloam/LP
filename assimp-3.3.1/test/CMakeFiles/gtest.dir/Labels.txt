@@ -1,0 +1,13 @@
+# Target labels
+ gtest
+# Source files and their labels
+/home/peter/program/assimp-3.3.1/test/CMakeFiles/gtest
+/home/peter/program/assimp-3.3.1/test/CMakeFiles/gtest.rule
+/home/peter/program/assimp-3.3.1/test/CMakeFiles/gtest-complete.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-build.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-configure.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-download.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-install.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-mkdir.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-patch.rule
+/home/peter/program/assimp-3.3.1/test/gtest/src/gtest-stamp/gtest-update.rule

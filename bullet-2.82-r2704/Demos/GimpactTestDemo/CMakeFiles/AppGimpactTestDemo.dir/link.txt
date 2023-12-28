@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/AppGimpactTestDemo.dir/GimpactTestDemo.o CMakeFiles/AppGimpactTestDemo.dir/home/peter/projects/bullet-2.82-r2704/Demos/OpenGL/Win32AppMain.o CMakeFiles/AppGimpactTestDemo.dir/Win32GimpactDemo.o  -o AppGimpactTestDemo -rdynamic -lOpenGLSupport -lBulletDynamics -lBulletCollision -lLinearMath -lGIMPACTUtils -lConvexDecomposition 

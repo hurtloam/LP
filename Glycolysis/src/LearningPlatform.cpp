@@ -515,7 +515,8 @@ void LearningPlatform::init()
     SDL_GL_MakeCurrent(sdl->getWindow(), sdl->getMainContext());
   }
   else {
-    resObj->loadObjFiles();
+    // resObj->loadObjFiles();
+    resObj->loadObjFiles_maze ();
     //EPEBROR 171223      resObj->loadObjFiles_maze ();
   }
   //#endif
@@ -526,14 +527,15 @@ void LearningPlatform::init()
   //	resourceList->initText();
 
   //EPEBROR 171223  stage->init_maze ();
-  stage->init2();
+  stage->init_maze ();
+  //stage->init2();
   //	stageGui = new Stage(*resObj, *view);
 
 
   //  stage_skyBox->initSkyBox();
 
   //Initiate the game logic.
-  gameLogic = new GameLogic2(stage, *resObj, *view);
+  //gameLogic = new GameLogic2(stage, *resObj, *view);
 
   alterCameraSpeedCmd = new AlterCameraSpeedCmd(*view);
   alterGridCmd = new AlterGridCmd(*stage);
