@@ -22,3 +22,6 @@ This is intended to be a labtool helping educating university students in metabo
 
     Planning to use
         RDKit
+
+Environment variable needs to be set:
+export LD_LIBRARY_PATH=<full_path_to>/LP/assimp-3.3.1/lib
