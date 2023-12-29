@@ -1,0 +1,4 @@
+/.metadata/
+src/*.o
+src/*.d
+

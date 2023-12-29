@@ -1,0 +1,189 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CPP_SRCS += \
+../src/Actor.cpp \
+../src/Arrow.cpp \
+../src/Ball.cpp \
+../src/CoordinateLines.cpp \
+../src/Creature.cpp \
+../src/FallingCube.cpp \
+../src/GameLogic.cpp \
+../src/GameLogic2.cpp \
+../src/GameState.cpp \
+../src/Glucose.cpp \
+../src/Glucose6Phosphate.cpp \
+../src/Hexokinase.cpp \
+../src/IceCube.cpp \
+../src/InitError.cpp \
+../src/LPDebugDraw.cpp \
+../src/LPObject.cpp \
+../src/LearningPlatform.cpp \
+../src/LightSource.cpp \
+../src/LineObj.cpp \
+../src/MenuContainer.cpp \
+../src/MenuFactory.cpp \
+../src/MenuItem.cpp \
+../src/Mitochondria.cpp \
+../src/Molecule.cpp \
+../src/NoSign.cpp \
+../src/ObjectFactory.cpp \
+../src/Person.cpp \
+../src/Phosphofructokinase.cpp \
+../src/Plane.cpp \
+../src/Plate.cpp \
+../src/ResObj.cpp \
+../src/SDL_base.cpp \
+../src/Scene.cpp \
+../src/SignPost.cpp \
+../src/SignPost2.cpp \
+../src/SkyBox.cpp \
+../src/Sniper.cpp \
+../src/SoundBank.cpp \
+../src/Stage.cpp \
+../src/StaticObj.cpp \
+../src/Text.cpp \
+../src/TextMenuItem.cpp \
+../src/TextObject.cpp \
+../src/Two_PhosphoGlycerate.cpp \
+../src/View.cpp \
+../src/Wall.cpp \
+../src/WallCube.cpp \
+../src/WooddenCube.cpp \
+../src/WooddenCube2.cpp \
+../src/objloader.cpp \
+../src/shader.cpp \
+../src/texture.cpp \
+../src/vboindexer.cpp 
+
+OBJS += \
+./src/Actor.o \
+./src/Arrow.o \
+./src/Ball.o \
+./src/CoordinateLines.o \
+./src/Creature.o \
+./src/FallingCube.o \
+./src/Fructose6Phosphate.o \
+./src/GameLogic.o \
+./src/GameLogic2.o \
+./src/GameState.o \
+./src/Glucose.o \
+./src/Glucose6Phosphate.o \
+./src/Hexokinase.o \
+./src/IceCube.o \
+./src/InitError.o \
+./src/LPDebugDraw.o \
+./src/LPObject.o \
+./src/LearningPlatform.o \
+./src/LightSource.o \
+./src/LineObj.o \
+./src/MenuContainer.o \
+./src/MenuFactory.o \
+./src/MenuItem.o \
+./src/Mitochondria.o \
+./src/Molecule.o \
+./src/NoSign.o \
+./src/ObjectFactory.o \
+./src/Person.o \
+./src/Phosphofructokinase.o \
+./src/Plane.o \
+./src/Plate.o \
+./src/ResObj.o \
+./src/SDL_base.o \
+./src/Scene.o \
+./src/SignPost.o \
+./src/SignPost2.o \
+./src/SkyBox.o \
+./src/Sniper.o \
+./src/SoundBank.o \
+./src/Stage.o \
+./src/StaticObj.o \
+./src/Text.o \
+./src/TextMenuItem.o \
+./src/TextObject.o \
+./src/Two_PhosphoGlycerate.o \
+./src/View.o \
+./src/Wall.o \
+./src/WallCube.o \
+./src/WooddenCube.o \
+./src/WooddenCube2.o \
+./src/objloader.o \
+./src/shader.o \
+./src/texture.o \
+./src/vboindexer.o 
+
+CPP_DEPS += \
+./src/Actor.d \
+./src/Arrow.d \
+./src/Ball.d \
+./src/CoordinateLines.d \
+./src/Creature.d \
+./src/FallingCube.d \
+./src/Fructose6Phosphate.d \
+./src/GameLogic.d \
+./src/GameLogic2.d \
+./src/GameState.d \
+./src/Glucose.d \
+./src/Glucose6Phosphate.d \
+./src/Hexokinase.d \
+./src/IceCube.d \
+./src/InitError.d \
+./src/LPDebugDraw.d \
+./src/LPObject.d \
+./src/LearningPlatform.d \
+./src/LightSource.d \
+./src/LineObj.d \
+./src/MenuContainer.d \
+./src/MenuFactory.d \
+./src/MenuItem.d \
+./src/Mitochondria.d \
+./src/Molecule.d \
+./src/NoSign.d \
+./src/ObjectFactory.d \
+./src/Person.d \
+./src/Phosphofructokinase.d \
+./src/Plane.d \
+./src/Plate.d \
+./src/ResObj.d \
+./src/SDL_base.d \
+./src/Scene.d \
+./src/SignPost.d \
+./src/SignPost2.d \
+./src/SkyBox.d \
+./src/Sniper.d \
+./src/SoundBank.d \
+./src/Stage.d \
+./src/StaticObj.d \
+./src/Text.d \
+./src/TextMenuItem.d \
+./src/TextObject.d \
+./src/Two_PhosphoGlycerate.d \
+./src/View.d \
+./src/Wall.d \
+./src/WallCube.d \
+./src/WooddenCube.d \
+./src/WooddenCube2.d \
+./src/objloader.d \
+./src/shader.d \
+./src/texture.d \
+./src/vboindexer.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+src/%.o: ../src/%.cpp
+	@echo 'Building file: $<'
+	@echo 'Invoking: GCC C++ Compiler'
+	g++ -D_LINUX -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc"  -I"$(LP_ROOT)/bullet-2.82-r2704/src" -I"C:\MinGW\mingw64\x86_64-w64-mingw32\include" -I"$(LP_ROOT)/assimp-3.3.1/include" -O0 -g3 -p -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable -mno-fentry -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+src/LearningPlatform.o: ../src/LearningPlatform.cpp
+	@echo 'Building file: $<'
+	@echo 'Invoking: GCC C++ Compiler'
+	g++ -D_LINUX -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc" -I"$(LP_ROOT)/bullet-2.82-r2704/src" -I"C:\MinGW\mingw64\x86_64-w64-mingw32\include" -I"$(LP_ROOT)/assimp-3.3.1/include" -I/usr/local/include/MYGUI -O0 -g3 -p -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable -mfentry -std=c++11 -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/LearningPlatform.d" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+
