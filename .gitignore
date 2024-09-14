@@ -1,0 +1,9 @@
+/gprof
+/prof
+/Debug Work
+/Release
+/Default/
+*.rsp
+*.o
+Glycolysis/resources/obj/medieval/labyrinth/Labyrinth_all.fbx
+*.project

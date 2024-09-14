@@ -4,4 +4,5 @@
 /Release
 /Default/
 *.rsp
-
+*.o
+*.project
