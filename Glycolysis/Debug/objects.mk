@@ -11,9 +11,9 @@ LIBPATHS := \
 -L"$(LP_ROOT)/BEvent/Debug" \
 -L/MinGW/mingw64/lib \
 -L"$(LP_ROOT)/lua-5.1/src" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletDynamics" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletCollision" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/LinearMath" \
+-L"$(LP_ROOT)/bullet3/src/BulletDynamics" \
+-L"$(LP_ROOT)/bullet3/src/BulletCollision" \
+-L"$(LP_ROOT)/bullet3/src/LinearMath" \
 -L"$(LP_ROOT)/Glycolysis/Debug" \
 -L"$(LP_ROOT)/assimp-3.3.1/lib"
 
@@ -26,9 +26,9 @@ CPPFLAGS :=
 LIBPATHS := \
 -L"$(LP_ROOT)/BEvent/Debug" \
 -L"$(LP_ROOT)/lua-5.1/src" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletDynamics" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletCollision" \
--L"$(LP_ROOT)/bullet-2.82-r2704/src/LinearMath" \
+-L"$(LP_ROOT)/bullet3/src/BulletDynamics" \
+-L"$(LP_ROOT)/bullet3/src/BulletCollision" \
+-L"$(LP_ROOT)/bullet3/src/LinearMath" \
 -L"$(LP_ROOT)/Glycolysis/Debug" \
 -L"$(LP_ROOT)/assimp-3.3.1/lib" \
 -L"$(LP_ROOT)/lib"

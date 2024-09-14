@@ -37,8 +37,11 @@ Scene::Scene(const char *vertexShader, const char *fragmentShader) :
 //  Texture = 0;
 
 //  shader(vertexShader, fragmentShader);
+    printf("Inside Scene - before getProgramId\n");
+
   lpUniform.programID = shader.getProgramId();
 
+    printf("Inside Scene - after getProgramId\n");
 	// Get a handle for our "MVP" uniform
   lpUniform.MatrixID = glGetUniformLocation(lpUniform.programID, "MVP");
 
@@ -52,6 +55,7 @@ Scene::Scene(const char *vertexShader, const char *fragmentShader) :
 //	  gBoneID = = glGetUniformLocation(programID, name);
 //	}
 
+  printf("Inside Scene - before loop\n");
   for (unsigned int i = 0; i < ARRAY_SIZE_IN_ELEMENTS(lpUniform.BoneLocationID); i++) {
     char Name[128];
     memset(Name, 0, sizeof(Name));
@@ -59,42 +63,54 @@ Scene::Scene(const char *vertexShader, const char *fragmentShader) :
     lpUniform.BoneLocationID[i] = glGetUniformLocation(lpUniform.programID, Name);
   }
 
+  printf("Inside Scene - after loop\n");
   lpUniform.TextureID = glGetUniformLocation(lpUniform.programID, "myTextureSampler");
-//	TextureID  = glGetUniformLocation(programID, "tex");
+  //	TextureID  = glGetUniformLocation(programID, "tex");
 
-	glm::vec3 lightPos = glm::vec3(30.0f,40.0f,30.0f);
+  glm::vec3 lightPos = glm::vec3(30.0f,40.0f,30.0f);
   glUniform3f(lpUniform.LightID, lightPos.x, lightPos.y, lightPos.z);
 
 
-	tmpCounter = 0;
+  tmpCounter = 0;
 
-	// Bullet stuff below...
-	broadphase = new btDbvtBroadphase();
+  // Bullet stuff below...
+  printf("Inside Scene - Before Bullet\n");
+  broadphase = new btDbvtBroadphase();
 
+  printf("Inside Scene - After Bullet 5\n");
   collisionConfiguration = new btDefaultCollisionConfiguration ();
+  printf("Inside Scene - After Bullet 6\n");
   dispatcher = new btCollisionDispatcher (collisionConfiguration);
 
-	solver = new btSequentialImpulseConstraintSolver;
+  printf("Inside Scene - After Bullet 7\n");
+  solver = new btSequentialImpulseConstraintSolver;
 
-	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+  printf("Inside Scene - After Bullet 10\n");
+  dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
+  printf("Inside Scene - After Bullet 11\n");
   dynamicsWorld->setGravity (btVector3 (0, -15.81f, 0));
 
 
-	// Setting a ground
+  printf("Inside Scene - After Bullet\n");
+  // Setting a ground
   groundShape = new btStaticPlaneShape (btVector3 (0, 0, 0), 1);
   groundMotionState = new btDefaultMotionState (btTransform (btQuaternion (0, 0, 0, 1), btVector3 (0, 0, 0)));
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
-	groundRigidBody = new btRigidBody(groundRigidBodyCI);
-	dynamicsWorld->addRigidBody(groundRigidBody);
+  btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
+  groundRigidBody = new btRigidBody(groundRigidBodyCI);
+  dynamicsWorld->addRigidBody(groundRigidBody);
 
-//	btIDebugDraw *debugDrawer = new LPDebugDraw(this, vi);
-//	dynamicsWorld->setDebugDrawer(debugDrawer);
+  //	btIDebugDraw *debugDrawer = new LPDebugDraw(this, vi);
+  //	dynamicsWorld->setDebugDrawer(debugDrawer);
 
+  printf("INSIDE Scene 1\n");
   creature = nullptr;
 
+  printf("INSIDE Scene 2\n");
   logOutputPtr = new int(1);
+  printf("INSIDE Scene 3\n");
   setLogging(logOutputPtr, 1);
+  printf("END of Scene Constructor\n");
 
 }
 

@@ -91,14 +91,18 @@ Shader::Shader(const char * vertex_file_path, const char * fragment_file_path)
 	// Check the program
 	glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
 	glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	printf("INSIDE SHADER\n");
 	if ( InfoLogLength > 0 ){
 		std::vector<char> ProgramErrorMessage(InfoLogLength+1);
 		glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		printf("%s\n", &ProgramErrorMessage[0]);
 	}
 
+	printf("INSIDE SHADER2\n");
 	glDeleteShader(VertexShaderID);
+	printf("INSIDE SHADER3\n");
 	glDeleteShader(FragmentShaderID);
+	printf("INSIDE SHADER4\n");
 
   programId = ProgramID;
 }

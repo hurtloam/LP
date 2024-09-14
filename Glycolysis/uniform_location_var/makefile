@@ -58,8 +58,8 @@ EventSM: $(OBJS) $(USER_OBJS)
 	@echo 'Operating System =  $(MY_FLAGS)'
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-#	g++ -fpermissive -L"$(LP_ROOT)/BEvent/Debug" -L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletDynamics" -L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletCollision" -L"$(LP_ROOT)/bullet-2.82-r2704/src/LinearMath" -L"$(LP_ROOT)/assimp-3.3.1/lib" -L"$(LP_ROOT)/lua-5.1/src" -L/usr/local/lib/ -L/usr/src/gtest -L/usr/src/gmock -L/usr/local/lib/ -L/lib/x86_64-linux-gnu -p -o "EventSM" $(OBJS) $(USER_OBJS) $(LIBS) -lgtest -lgtest_main -pthread -lpthread -lgmock -lgmock_main
-	g++ -fpermissive -L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletDynamics" -L"$(LP_ROOT)/bullet-2.82-r2704/src/BulletCollision" -L"$(LP_ROOT)/bullet-2.82-r2704/src/.libs" -L"$(LP_ROOT)/bullet-2.82-r2704/src/LinearMath" -L/usr/local/lib/ -L/usr/src/gtest -L/usr/src/gmock -L/usr/local/lib/ -L/lib/x86_64-linux-gnu -p -o "EventSM" $(OBJS) $(USER_OBJS) $(LIBS) -lBulletDynamics -lBulletCollision -lLinearMath -lgtest -lgtest_main -pthread -lpthread -lgmock -lgmock_main
+#	g++ -fpermissive -L"$(LP_ROOT)/BEvent/Debug" -L"$(LP_ROOT)/bullet3/src/BulletDynamics" -L"$(LP_ROOT)/bullet3/src/BulletCollision" -L"$(LP_ROOT)/bullet3/src/LinearMath" -L"$(LP_ROOT)/assimp-3.3.1/lib" -L"$(LP_ROOT)/lua-5.1/src" -L/usr/local/lib/ -L/usr/src/gtest -L/usr/src/gmock -L/usr/local/lib/ -L/lib/x86_64-linux-gnu -p -o "EventSM" $(OBJS) $(USER_OBJS) $(LIBS) -lgtest -lgtest_main -pthread -lpthread -lgmock -lgmock_main
+	g++ -fpermissive -L"$(LP_ROOT)/bullet3/src/BulletDynamics" -L"$(LP_ROOT)/bullet3/src/BulletCollision" -L"$(LP_ROOT)/bullet3/src/.libs" -L"$(LP_ROOT)/bullet3/src/LinearMath" -L/usr/local/lib/ -L/usr/src/gtest -L/usr/src/gmock -L/usr/local/lib/ -L/lib/x86_64-linux-gnu -p -o "EventSM" $(OBJS) $(USER_OBJS) $(LIBS) -lBulletDynamics -lBulletCollision -lLinearMath -lgtest -lgtest_main -pthread -lpthread -lgmock -lgmock_main
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -207,9 +207,9 @@ void View::computeMatricesFromInputs(SDL_Window *window, int xpos, int ypos, int
 
 	// Right vector
 	glm::vec3 right = glm::vec3(
-		sin(horizontalAngle - M_PI/2.0f),
+		sin(horizontalAngle - 3.14159265f/2.0f),
 		0,
-		cos(horizontalAngle - M_PI/2.0f)
+		cos(horizontalAngle - 3.14159265f/2.0f)
 	);
 
 	// Up vector

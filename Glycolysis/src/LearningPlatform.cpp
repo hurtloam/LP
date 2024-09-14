@@ -425,6 +425,7 @@ void LearningPlatform::init()
   //	resourceList_view = new View(screenWidth, screenHeight);
   view_skyBox = new View (screenWidth, screenHeight);
 
+  printf("Before ResObj\n");
   // Initiate all resources
   resObj = new ResObj ();
   stage = new Stage (this, *resObj, *view);
@@ -515,7 +516,7 @@ void LearningPlatform::init()
     SDL_GL_MakeCurrent(sdl->getWindow(), sdl->getMainContext());
   }
   else {
-    // resObj->loadObjFiles();
+     //resObj->loadObjFiles();
     resObj->loadObjFiles_maze ();
     //EPEBROR 171223      resObj->loadObjFiles_maze ();
   }
@@ -523,8 +524,8 @@ void LearningPlatform::init()
 
 
   // Initiate all objects
-  //	resourceList = new Stage(*resObj, *resourceList_view);
-  //	resourceList->initText();
+  //resourceList = new Stage(*resObj, *resourceList_view);
+  //resourceList->initText();
 
   //EPEBROR 171223  stage->init_maze ();
   stage->init_maze ();
@@ -588,6 +589,7 @@ int LearningPlatform::execute()
     ImGui_ImplSdlGL3_Init(sdl->getWindow());
     TRACE_INFO("Before while()");
     while (running) {
+    	printf("INSIDE WHILE LOOP\n");
       while (SDL_PollEvent(&Event)) {
         if (Event.type == SDL_QUIT)
           running = false;
@@ -784,23 +786,28 @@ void LearningPlatform::render(double diffTime)
   // one viewport
   else if (viewPortSelector == 2)
   {
+	  TRACE_INFO("ONE VIEWPORT\n");
     glViewport(0.f, 0.f, screenWidth, screenHeight);
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // DISABLE for a while
-    if (debugBullet) {
-      mydebugdrawer2->SetMatrices(view->getViewMatrix(), view->getProjectionMatrix(), stage->getProgramId());
-      stage->getDynamicsWorld()->debugDrawWorld();
-      stage->getDynamicsWorldText()->debugDrawWorld();
-    }
+//    if (debugBullet) {
+//      mydebugdrawer2->SetMatrices(view->getViewMatrix(), view->getProjectionMatrix(), stage->getProgramId());
+//      stage->getDynamicsWorld()->debugDrawWorld();
+//      stage->getDynamicsWorldText()->debugDrawWorld();
+//    }
 
 
+    //TRACE_INFO("Before stage->draw()\n");
     stage->draw ();
     //    stage_skyBox->draw ();
     //    SDL_Log("After stage->draw() in render()");
-    ImGui_ImplSdlGL3_NewFrame(sdl->getWindow(), g_MouseWheel);
-    runGui(show_test_window, show_another_window, show_object_window, clear_color, io);
+    //TRACE_INFO("Before Before imgui\n");
+    //ImGui_ImplSdlGL3_NewFrame(sdl->getWindow(), g_MouseWheel);
+    //TRACE_INFO("Before Before runGui\n");
+    //runGui(show_test_window, show_another_window, show_object_window, clear_color, io);
+    //TRACE_INFO("After imgui\n");
     //    SDL_Log("After runGui(---) in render()");
 
     // EPEBROR Comment out temporarily
@@ -875,7 +882,7 @@ void LearningPlatform::OnKeyDown(SDL_Keycode sym, Uint16 mod)
 
   // Right vector
   glm::vec3 right = glm::vec3 (
-      sin (view->getHorizontalAngle () - M_PI / 2.0f), 0,
+      sin (view->getHorizontalAngle () - 3.14159265f / 2.0f), 0,
       cos (view->getHorizontalAngle () - 3.14159265f / 2.0f));
 
   switch (sym)
@@ -1005,7 +1012,7 @@ void LearningPlatform::OnKeyDown(SDL_Keycode sym, Uint16 mod)
     BSoundBank::SoundControl.FadeInChannel(horror, 1000);
     BSoundBank::SoundControl.Repeat(horror);
     BSoundBank::SoundControl.FadeInChannel(Soundwin, 1000);
-    BSoundBank::SoundControl.Repeat(Soundwin);
+//    BSoundBank::SoundControl.Repeat(Soundwin);
     updateGuiOnFPersonData(stage->getScene()->getCreature());
     break;
   case SDLK_LCTRL:
@@ -1651,7 +1658,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
   // EventSM->onMouseMove(mX, mY, relX, relY, Left, Right, Middle);
   //    logger << "ENTER LearningPlatform::OnMouseMove\n";
   // std::cout << "ENTER LearningPlatform::OnMouseMove" << std::endl;
-  TRACE_INFO("ENTER LearningPlatform::OnMouseMove");
+//  printf("ENTER LearningPlatform::OnMouseMove\n");
   SDL_Window* window = sdl->getWindow ();
 
   Stage *st;

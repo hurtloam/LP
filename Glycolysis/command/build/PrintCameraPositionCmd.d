@@ -1,8 +1,8 @@
-/home/peter/projects/LP/Glycolysis/command/build/PrintCameraPositionCmd.o: \
- /home/peter/projects/LP/Glycolysis/command/src/PrintCameraPositionCmd.cpp \
- /home/peter/projects/LP/Glycolysis/command/src/../inc/PrintCameraPositionCmd.h \
- /home/peter/projects/LP/Glycolysis/command/src/../inc/../../inc/ViewIf.h \
- /home/peter/projects/LP/Glycolysis/command/src/../inc/Command.h
-/home/peter/projects/LP/Glycolysis/command/src/../inc/PrintCameraPositionCmd.h:
-/home/peter/projects/LP/Glycolysis/command/src/../inc/../../inc/ViewIf.h:
-/home/peter/projects/LP/Glycolysis/command/src/../inc/Command.h:
+C:/Users/peter/projects/LP/Glycolysis/command/build/PrintCameraPositionCmd.o: \
+ C:/Users/peter/projects/LP/Glycolysis/command/src/PrintCameraPositionCmd.cpp \
+ C:/Users/peter/projects/LP/Glycolysis/command/inc/PrintCameraPositionCmd.h \
+ C:/Users/peter/projects/LP/Glycolysis/inc/ViewIf.h \
+ C:/Users/peter/projects/LP/Glycolysis/command/inc/Command.h
+C:/Users/peter/projects/LP/Glycolysis/command/inc/PrintCameraPositionCmd.h:
+C:/Users/peter/projects/LP/Glycolysis/inc/ViewIf.h:
+C:/Users/peter/projects/LP/Glycolysis/command/inc/Command.h:

@@ -89,22 +89,21 @@ ResObj::loadObjFiles_maze ()
 //      loadStaticObjFiles("resources/obj/stone_brick/cliff_3.obj", plane);
 //      loadStaticObjFiles("resources/obj/plane/plane3.obj", plane);
 //      loadStaticObjFiles("resources/obj/plane/plane4.obj", plane);
-  loadStaticObjFiles("resources/obj/plane/plane003.obj", plane, "plane", "");
-  loadStaticObjFiles("cube.obj", cube, "cube", "cube");
-  loadStaticObjFiles("resources/obj/maze/maze_floor_3x1.blend", maze_floor_3x1, "maze_floor_3x1", "");
-  loadStaticObjFiles("resources/obj/maze/maze_floor_3x5.blend", maze_floor_3x5, "maze_floor_3x5", "");
- loadStaticObjFiles ("resources/obj/maze/maze_floor_3x10.blend",
-                     maze_floor_3x10, "maze_floor_3x10", "");
- loadStaticObjFiles ("resources/obj/maze/maze_floor_3x20.blend",
-                     maze_floor_3x20, "maze_floor_3x20", "");
-  loadStaticObjFiles("resources/obj/maze/maze_floor_3x3.blend", maze_floor_3x3, "maze_floor_3x3", "");
-  loadStaticObjFiles("resources/obj/maze/maze_floor_5x5.blend", maze_floor_5x5, "maze_floor_5x5", "");
-
-  loadStaticObjFiles("resources/obj/maze/maze_door_3x2.blend", maze_door_3x2, "maze_door_3x2", "");
- loadStaticObjFiles ("resources/obj/maze/maze_door_x_3x3.blend",
-                     maze_door_x_3x3, "maze_door_x_3x3", "");
- loadStaticObjFiles ("resources/obj/maze/maze_door_y_3x3.blend",
-                     maze_door_y_3x3, "maze_door_y_3x3", "");
+   loadStaticObjFiles("resources/obj/plane/plane003.obj", plane, "plane", "");
+   loadStaticObjFiles("cube.obj", cube, "cube", "cube");
+   loadStaticObjFiles("resources/obj/maze/maze_floor_3x1.blend", maze_floor_3x1, "maze_floor_3x1", "");
+   loadStaticObjFiles("resources/obj/maze/maze_floor_3x5.blend", maze_floor_3x5, "maze_floor_3x5", "");
+  loadStaticObjFiles ("resources/obj/maze/maze_floor_3x10.blend",
+                      maze_floor_3x10, "maze_floor_3x10", "");
+  loadStaticObjFiles ("resources/obj/maze/maze_floor_3x20.blend",
+                      maze_floor_3x20, "maze_floor_3x20", "");
+   loadStaticObjFiles("resources/obj/maze/maze_floor_3x3.blend", maze_floor_3x3, "maze_floor_3x3", "");
+   loadStaticObjFiles("resources/obj/maze/maze_floor_5x5.blend", maze_floor_5x5, "maze_floor_5x5", "");
+ 
+   loadStaticObjFiles("resources/obj/maze/maze_door_3x2.blend", maze_door_3x2, "maze_door_3x2", "");
+  loadStaticObjFiles ("resources/obj/maze/maze_door_x_3x3.blend",
+                      maze_door_x_3x3, "maze_door_x_3x3", "");
+  loadStaticObjFiles ("resources/obj/maze/maze_door_y_3x3.blend", maze_door_y_3x3, "maze_door_y_3x3", "");
 
 // disabled 3 below testing menu myGUI
 //      loadStaticObjFiles("resources/obj/phosphoglycerate/phosphoglycerate2.obj", phospho_glycerate);
@@ -217,7 +216,7 @@ ResObj::loadObjFiles_maze ()
 
 //      loadStaticObjFiles("resources/obj/pilot2/pilot2.obj", pilot);
 
-  loadStaticObjFiles("resources/obj/box/blender_ball.obj", ball, "ball", "ball");
+ loadStaticObjFiles("resources/obj/box/blender_ball.obj", ball, "ball", "ball");
 
 //      loadStaticObjFiles("resources/obj/ball/blender_ball.obj", ball);
 
@@ -797,7 +796,7 @@ ResObj::loadText (char * filePath, int screenWidth, int screenHeight)
  // Load all texts from file
  loadTextFile (filePath);
   for (auto l : textList) {
-    TRACE_DEBUG("Text=%s, wiki=%s, font=%s, size=%d", l.textLine.c_str(), l.wikiName.c_str(), l.fontPath.c_str(), l.size);
+    //TRACE_DEBUG("Text=%s, wiki=%s, font=%s, size=%d", l.textLine.c_str(), l.wikiName.c_str(), l.fontPath.c_str(), l.size);
   }
  cout << "Finished Loading text from file " << endl;
  int index = 1;
@@ -1023,9 +1022,7 @@ VertexBoneData::AddBoneData (GLuint BoneID, float Weight)
 {
  for (GLuint i = 0; i < ARRAY_SIZE_IN_ELEMENTS(IDs); i++)
   {
-   SDL_LogInfo (SDL_LOG_CATEGORY_CUSTOM,
-                "AddBoneData: Weights[%d]=%f, Weight=%f", i, Weights[i],
-                Weight);
+   //TRACE_DEBUG("AddBoneData: Weights[%d]=%f, Weight=%f", i, Weights[i], Weight);
    if (Weights[i] == 0.0)
     {
      IDs[i] = BoneID;
@@ -1053,9 +1050,7 @@ ResObj::LoadBones (unsigned int meshCount, const aiMesh* pMesh, obj* mesh,
 
    if (mesh->m_BoneMapping.find (BoneName) == mesh->m_BoneMapping.end ())
     {
-     SDL_LogInfo (SDL_LOG_CATEGORY_CUSTOM,
-                  "ResObj::LoadBones: bone %d=%s, no of bones in pMesh[%d]:%d",
-                  i, BoneName.c_str (), meshCount, pMesh->mNumBones);
+                  //TRACE_DEBUG("ResObj::LoadBones: bone %d=%s, no of bones in pMesh[%d]:%d", i, BoneName.c_str (), meshCount, pMesh->mNumBones);
      BoneIndex = mesh->m_NumBones;
      mesh->m_NumBones++;
      SDL_LogInfo (SDL_LOG_CATEGORY_CUSTOM, "ResObj::LoadBones: BoneIndex=%d",
@@ -1084,9 +1079,7 @@ ResObj::LoadBones (unsigned int meshCount, const aiMesh* pMesh, obj* mesh,
   }
  for (std::pair<std::string, GLuint> bone : mesh->m_BoneMapping)
   {
-   SDL_LogInfo (SDL_LOG_CATEGORY_CUSTOM,
-                "ResObj::LoadBones: boneName %s, index:%d", bone.first.c_str (),
-                bone.second);
+    //TRACE_DEBUG("ResObj::LoadBones: boneName %s, index:%d", bone.first.c_str (), bone.second);
   }
 }
 

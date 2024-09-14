@@ -69,9 +69,15 @@ Stage::Stage (LPWatch* watch, ResObj& resObj, View& view) :
   luaIf = new LuaIf(this, nullptr);
 
   // A Separate scene for all text objects. It will have different shaders apart from the other objects.
-  scene_txt = new Scene("shaders/text.v.glsl", "shaders/text.f.glsl");
+	  printf("Before scene\n");
   scene = new Scene("shaders/StandardShading.vertexshader", "shaders/StandardShading.fragmentshader");
 
+	  printf("after scene\n");
+	  printf("Before scene_txt\n");
+  scene_txt = new Scene("shaders/text.v.glsl", "shaders/text.f.glsl");
+
+	  printf("after scene_txt\n");
+	  
   objFactory = new ObjectFactory(watch, resObj, view, scene->getProgramId(), scene->getMatrixId(), scene->getViewMatrixId(), scene->getModelMatrixId(), scene->getLightId(), scene->getTextureId());
   objFactory_txt = new ObjectFactory(watch, resObj, view, scene_txt->getProgramId(), scene_txt->getMatrixId(), scene_txt->getViewMatrixId(), scene_txt->getModelMatrixId(), scene_txt->getLightId(), scene_txt->getTextureId());
 }
@@ -611,7 +617,7 @@ Stage::init_maze ()
 
   float zCoord = 0.0f;
 //  SDL_Log ("Inside Stage::init_maze  at beginning of STAGE 1");
-  TRACE_INFO("Inside Stage::init_maze  at beginning of STAGE 1");
+//  TRACE_INFO("Inside Stage::init_maze  at beginning of STAGE 1");
   string mInfo1 = "Glucose";
   string mInfo2 = "";
   string mInfo3 = "";
@@ -822,7 +828,7 @@ Stage::move (std::vector<std::pair<int, int>> collisionDetected, btVector3 norma
     if (scene->getCreature () != nullptr)
     {
       glm::vec3 direction (cos (0) * sin (view.getHorizontalAngle ()), sin (0), cos (0) * cos (view.getHorizontalAngle ()));
-      glm::vec3 right = glm::vec3 (sin (view.getHorizontalAngle () - M_PI / 2.0f), 0, cos (view.getHorizontalAngle () - 3.14159265f / 2.0f));
+      glm::vec3 right = glm::vec3 (sin (view.getHorizontalAngle () - 3.14159265f/ 2.0f), 0, cos (view.getHorizontalAngle () - 3.14159265f / 2.0f));
 
       ((FPerson*) (scene->getCreature ()))->setDirection (direction);
       ((FPerson*) (scene->getCreature ()))->setRight (right);

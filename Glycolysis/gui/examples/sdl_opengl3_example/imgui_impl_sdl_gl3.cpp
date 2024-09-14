@@ -179,11 +179,14 @@ static void ImGui_ImplSdlGL3_SetClipboardText(void*, const char* text)
 void ImGui_ImplSdlGL3_CreateFontsTexture()
 {
     // Build texture atlas
+	printf("INSIDE ImGui_ImplSdlGL3_CreateFontsTexture \n");
     ImGuiIO& io = ImGui::GetIO();
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 1\n");
     unsigned char* pixels;
     int width, height;
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 1.5\n");
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);   // Load as RGBA 32-bits for OpenGL3 demo because it is more likely to be compatible with user's existing shader.
-
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 2\n");
     // Upload texture to graphics system
     GLint last_texture;
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
@@ -193,12 +196,13 @@ void ImGui_ImplSdlGL3_CreateFontsTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 3\n");
     // Store our identifier
     io.Fonts->TexID = (void *)(intptr_t)g_FontTexture;
-
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 4\n");
     // Restore state
     glBindTexture(GL_TEXTURE_2D, last_texture);
+    printf("ImGui_ImplSdlGL3_CreateFontsTexture 5\n");
 }
 
 bool ImGui_ImplSdlGL3_CreateDeviceObjects()
@@ -267,14 +271,16 @@ bool ImGui_ImplSdlGL3_CreateDeviceObjects()
     glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
     glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
 #undef OFFSETOF
-
+    printf("Before ImGui_ImplSdlGL3_CreateFontsTexture \n");
     ImGui_ImplSdlGL3_CreateFontsTexture();
-
+    printf("After ImGui_ImplSdlGL3_CreateFontsTexture \n");
     // Restore modified GL state
     glBindTexture(GL_TEXTURE_2D, last_texture);
+    printf("After ImGui_ImplSdlGL3_CreateFontsTexture 1\n");
     glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
+    printf("After ImGui_ImplSdlGL3_CreateFontsTexture 2\n");
     glBindVertexArray(last_vertex_array);
-
+    printf("After ImGui_ImplSdlGL3_CreateFontsTexture 3\n");
     return true;
 }
 
@@ -333,6 +339,7 @@ bool    ImGui_ImplSdlGL3_Init(SDL_Window* window)
     io.ClipboardUserData = NULL;
 
 #ifdef _WIN32
+    printf("_WIN32 seems to be set!\n");
     SDL_SysWMinfo wmInfo;
     SDL_VERSION(&wmInfo.version);
     SDL_GetWindowWMInfo(window, &wmInfo);
@@ -352,20 +359,27 @@ void ImGui_ImplSdlGL3_Shutdown()
 
 void ImGui_ImplSdlGL3_NewFrame(SDL_Window* window, float g_MouseWheel)
 {
-    if (!g_FontTexture)
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame \n");
+    if (!g_FontTexture) {
+//    	printf("Inside ImGui_ImplSdlGL3_NewFrame -5\n");
         ImGui_ImplSdlGL3_CreateDeviceObjects();
+//        printf("Inside ImGui_ImplSdlGL3_NewFrame -4\n");
+    }
 
     ImGuiIO& io = ImGui::GetIO();
-
     // Setup display size (every frame to accommodate for window resizing)
     int w, h;
     int display_w, display_h;
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame -3\n");
     SDL_GetWindowSize(window, &w, &h);
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame -2\n");
     SDL_GL_GetDrawableSize(window, &display_w, &display_h);
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame -1\n");
     io.DisplaySize = ImVec2((float)w, (float)h);
     io.DisplayFramebufferScale = ImVec2(w > 0 ? ((float)display_w / w) : 0, h > 0 ? ((float)display_h / h) : 0);
 
     // Setup time step
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 0\n");
     Uint32	time = SDL_GetTicks();
     double current_time = time / 1000.0;
     io.DeltaTime = g_Time > 0.0 ? (float)(current_time - g_Time) : (float)(1.0f / 60.0f);
@@ -374,23 +388,31 @@ void ImGui_ImplSdlGL3_NewFrame(SDL_Window* window, float g_MouseWheel)
     // Setup inputs
     // (we already got mouse wheel, keyboard keys & characters from SDL_PollEvent())
     int mx, my;
+    printf("Inside ImGui_ImplSdlGL3_NewFrame 1\n");
     Uint32 mouseMask = SDL_GetMouseState(&mx, &my);
-    if (SDL_GetWindowFlags(window) & SDL_WINDOW_MOUSE_FOCUS)
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 2\n");
+    if (SDL_GetWindowFlags(window) & SDL_WINDOW_MOUSE_FOCUS) {
+    	printf("Inside ImGui_ImplSdlGL3_NewFrame 3\n");
         io.MousePos = ImVec2((float)mx, (float)my);   // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
-    else
+    }
+    else {
         io.MousePos = ImVec2(-1, -1);
+    }
 
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 4\n");
     io.MouseDown[0] = g_MousePressed[0] || (mouseMask & SDL_BUTTON(SDL_BUTTON_LEFT)) != 0;		// If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.
     io.MouseDown[1] = g_MousePressed[1] || (mouseMask & SDL_BUTTON(SDL_BUTTON_RIGHT)) != 0;
     io.MouseDown[2] = g_MousePressed[2] || (mouseMask & SDL_BUTTON(SDL_BUTTON_MIDDLE)) != 0;
     g_MousePressed[0] = g_MousePressed[1] = g_MousePressed[2] = false;
-
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 5\n");
     io.MouseWheel = g_MouseWheel;
     g_MouseWheel = 0.0f;
 
     // Hide OS mouse cursor if ImGui is drawing it
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 6\n");
     SDL_ShowCursor(io.MouseDrawCursor ? 0 : 1);
-
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame 7\n");
     // Start the frame
     ImGui::NewFrame();
+//    printf("Inside ImGui_ImplSdlGL3_NewFrame END\n");
 }

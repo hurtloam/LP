@@ -3610,6 +3610,7 @@ STBTT_DEF int stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, const
 
    k = 0;
    for (i=0; i < num_ranges; ++i) {
+	   printf("ENTER stbtt_PackFontRangesRenderIntoRects 1\n");
       float fh = ranges[i].font_size;
       float scale = fh > 0 ? stbtt_ScaleForPixelHeight(info, fh) : stbtt_ScaleForMappingEmToPixels(info, -fh);
       float recip_h,recip_v,sub_x,sub_y;
@@ -3619,9 +3620,12 @@ STBTT_DEF int stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, const
       recip_v = 1.0f / spc->v_oversample;
       sub_x = stbtt__oversample_shift(spc->h_oversample);
       sub_y = stbtt__oversample_shift(spc->v_oversample);
+      printf("ENTER stbtt_PackFontRangesRenderIntoRects 2\n");
       for (j=0; j < ranges[i].num_chars; ++j) {
+    	  printf("ENTER stbtt_PackFontRangesRenderIntoRects 3\n");
          stbrp_rect *r = &rects[k];
          if (r->was_packed) {
+        	 printf("ENTER stbtt_PackFontRangesRenderIntoRects 4\n");
             stbtt_packedchar *bc = &ranges[i].chardata_for_range[j];
             int advance, lsb, x0,y0,x1,y1;
             int codepoint = ranges[i].array_of_unicode_codepoints == NULL ? ranges[i].first_unicode_codepoint_in_range + j : ranges[i].array_of_unicode_codepoints[j];
@@ -3668,6 +3672,7 @@ STBTT_DEF int stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, const
             bc->xoff2    =                (x0 + r->w) * recip_h + sub_x;
             bc->yoff2    =                (y0 + r->h) * recip_v + sub_y;
          } else {
+        	 printf("ENTER stbtt_PackFontRangesRenderIntoRects 5\n");
             return_value = 0; // if any fail, report failure
          }
 

@@ -128,7 +128,7 @@ void Molecule::move(bool flag) {
 
 void Molecule::move(std::vector<std::pair<int, int>> collisionDetected, glm::vec3 normal)
 {
-  printf("ENTER Molecule::move2\n");
+  //printf("ENTER Molecule::move2\n");
   btTransform trans;
   btVector3 bvec;
   getRigidBody()->getMotionState()->getWorldTransform(trans);

@@ -235,14 +235,14 @@ $(SUB_DIR)/Debug/src/%.o: $(SUB_DIR)/src/%.cpp
 	@echo 'Operating System = $(OPER_SYS)'
 	@echo 'MY_FLAGS =  $(MY_FLAGS)'
 	@echo 'LP_ROOT =  $(LP_ROOT)'	
-	g++ -D_LINUX $(MY_FLAGS) -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc" -I"$(LP_ROOT)/Glycolysis/command/inc"  -I"$(LP_ROOT)/bullet-2.82-r2704/src"  -I"$(LP_ROOT)/assimp-3.3.1/include" -I"$(LP_ROOT)/lua-5.1/src" -I"$(LP_ROOT)/freetype-2.4.12/include" -O0 -g3 -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable  -std=c++11 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -D_LINUX $(MY_FLAGS) -isystem"/mingw64/include" -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc" -I"$(LP_ROOT)/Glycolysis/command/inc"  -I"$(LP_ROOT)/bullet3/src"  -I"$(LP_ROOT)/assimp-3.3.1/include" -I"$(LP_ROOT)/lua-5.1/src" -I"$(LP_ROOT)/freetype-2.4.12/include" -O0 -g3 -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable  -std=c++11 -fPIC -MMD -MP -MF"$(%.o)" -MT"$(%.o)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
 src/LearningPlatform.o: $(SUB_DIR)/src/LearningPlatform.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -D_LINUX $(MY_FLAGS) -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc" -I"$(LP_ROOT)/bullet-2.82-r2704/src"   -I/usr/local/include/MYGUI -I"$(LP_ROOT)/assimp-3.3.1/include" -I"$(LP_ROOT)/lua-5.1/src" -I"$(LP_ROOT)/freetype-2.4.12/include"   -O0 -g3 -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable  -std=c++11 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"src/LearningPlatform.d" -o "$@" "$<"
+	g++ -D_LINUX $(MY_FLAGS) -I"$(LP_ROOT)/BEvent" -I"$(LP_ROOT)/BEvent/inc" -I"$(LP_ROOT)/bullet3/src"   -I/usr/local/include/MYGUI -I"$(LP_ROOT)/assimp-3.3.1/include" -I"$(LP_ROOT)/lua-5.1/src" -I"$(LP_ROOT)/freetype-2.4.12/include"   -O0 -g3 -pedantic -Wall -Wextra -c -fmessage-length=0 -Wno-unused-variable  -std=c++11 -fPIC -MMD -MP -MF"$(%.o)"  -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -9,7 +9,7 @@ RM := rm -rf
 OPER_SYS = UNDEFINED_WIN
 ifeq ($(OS),Windows_NT)
   OPER_SYS = WINNT
-  LP_ROOT = C:/Users/peter/git/LP
+  LP_ROOT = C:/Users/peter/projects/LP
   MY_FLAGS = -DSYS_WINNT -DMY_DEBUG
 else
   ifeq ($(shell uname),Linux)

@@ -1113,38 +1113,47 @@ void    ImFontAtlas::Clear()
 void    ImFontAtlas::GetTexDataAsAlpha8(unsigned char** out_pixels, int* out_width, int* out_height, int* out_bytes_per_pixel)
 {
     // Build atlas on demand
+	printf("GetTexDataAsAlpha8\n");
     if (TexPixelsAlpha8 == NULL)
     {
+    	printf("GetTexDataAsAlpha8 1\n");
         if (ConfigData.empty())
             AddFontDefault();
+        printf("GetTexDataAsAlpha8 2\n");
         Build();
     }
-
+    printf("GetTexDataAsAlpha8 3\n");
     *out_pixels = TexPixelsAlpha8;
     if (out_width) *out_width = TexWidth;
     if (out_height) *out_height = TexHeight;
     if (out_bytes_per_pixel) *out_bytes_per_pixel = 1;
+    printf("GetTexDataAsAlpha8 2\n");
 }
 
 void    ImFontAtlas::GetTexDataAsRGBA32(unsigned char** out_pixels, int* out_width, int* out_height, int* out_bytes_per_pixel)
 {
     // Convert to RGBA32 format on demand
     // Although it is likely to be the most commonly used format, our font rendering is 1 channel / 8 bpp
+	printf("INSIDE GetTexDataAsRGBA32\n");
     if (!TexPixelsRGBA32)
     {
         unsigned char* pixels;
         GetTexDataAsAlpha8(&pixels, NULL, NULL);
+        printf("GetTexDataAsRGBA32 1\n");
         TexPixelsRGBA32 = (unsigned int*)ImGui::MemAlloc((size_t)(TexWidth * TexHeight * 4));
+        printf("GetTexDataAsRGBA32 2\n");
         const unsigned char* src = pixels;
         unsigned int* dst = TexPixelsRGBA32;
         for (int n = TexWidth * TexHeight; n > 0; n--)
             *dst++ = IM_COL32(255, 255, 255, (unsigned int)(*src++));
     }
-
+    printf("GetTexDataAsRGBA32 3\n");
     *out_pixels = (unsigned char*)TexPixelsRGBA32;
+    printf("GetTexDataAsRGBA32 4\n");
     if (out_width) *out_width = TexWidth;
     if (out_height) *out_height = TexHeight;
     if (out_bytes_per_pixel) *out_bytes_per_pixel = 4;
+    printf("GetTexDataAsRGBA32 5\n");
 }
 
 ImFont* ImFontAtlas::AddFont(const ImFontConfig* font_cfg)
@@ -1199,6 +1208,7 @@ static void         Decode85(const unsigned char* src, unsigned char* dst)
 // Load embedded ProggyClean.ttf at size 13, disable oversampling
 ImFont* ImFontAtlas::AddFontDefault(const ImFontConfig* font_cfg_template)
 {
+	printf("ImFontAtlas::AddFontDefault 1\n");
     ImFontConfig font_cfg = font_cfg_template ? *font_cfg_template : ImFontConfig();
     if (!font_cfg_template)
     {
@@ -1269,6 +1279,7 @@ ImFont* ImFontAtlas::AddFontFromMemoryCompressedBase85TTF(const char* compressed
 
 bool    ImFontAtlas::Build()
 {
+	printf("ENTER ImFontAtlas::Build\n");
     IM_ASSERT(ConfigData.Size > 0);
 
     TexID = NULL;
@@ -1284,12 +1295,13 @@ bool    ImFontAtlas::Build()
         int                 RangesCount;
     };
     ImFontTempBuildData* tmp_array = (ImFontTempBuildData*)ImGui::MemAlloc((size_t)ConfigData.Size * sizeof(ImFontTempBuildData));
-
+    printf("ENTER ImFontAtlas::Build1\n");
     // Initialize font information early (so we can error without any cleanup) + count glyphs
     int total_glyph_count = 0;
     int total_glyph_range_count = 0;
     for (int input_i = 0; input_i < ConfigData.Size; input_i++)
     {
+    	printf("ENTER ImFontAtlas::Build 2\n");
         ImFontConfig& cfg = ConfigData[input_i];
         ImFontTempBuildData& tmp = tmp_array[input_i];
 
@@ -1308,7 +1320,7 @@ bool    ImFontAtlas::Build()
             total_glyph_range_count++;
         }
     }
-
+    printf("ENTER ImFontAtlas::Build 3\n");
     // Start packing. We need a known width for the skyline algorithm. Using a cheap heuristic here to decide of width. User can override TexDesiredWidth if they wish.
     // After packing is done, width shouldn't matter much, but some API/GPU have texture size limitations and increasing width can decrease height.
     TexWidth = (TexDesiredWidth > 0) ? TexDesiredWidth : (total_glyph_count > 4000) ? 4096 : (total_glyph_count > 2000) ? 2048 : (total_glyph_count > 1000) ? 1024 : 512;
@@ -1322,6 +1334,7 @@ bool    ImFontAtlas::Build()
     RenderCustomTexData(0, &extra_rects);
     stbtt_PackSetOversampling(&spc, 1, 1);
     stbrp_pack_rects((stbrp_context*)spc.pack_info, &extra_rects[0], extra_rects.Size);
+    printf("ENTER ImFontAtlas::Build 4\n");
     for (int i = 0; i < extra_rects.Size; i++)
         if (extra_rects[i].was_packed)
             TexHeight = ImMax(TexHeight, extra_rects[i].y + extra_rects[i].h);
@@ -1334,10 +1347,11 @@ bool    ImFontAtlas::Build()
     memset(buf_packedchars, 0, total_glyph_count * sizeof(stbtt_packedchar));
     memset(buf_rects, 0, total_glyph_count * sizeof(stbrp_rect));              // Unnecessary but let's clear this for the sake of sanity.
     memset(buf_ranges, 0, total_glyph_range_count * sizeof(stbtt_pack_range));
-
+    printf("ENTER ImFontAtlas::Build 5\n");
     // First font pass: pack all glyphs (no rendering at this point, we are working with rectangles in an infinitely tall texture at this point)
     for (int input_i = 0; input_i < ConfigData.Size; input_i++)
     {
+    	printf("ENTER ImFontAtlas::Build 6\n");
         ImFontConfig& cfg = ConfigData[input_i];
         ImFontTempBuildData& tmp = tmp_array[input_i];
 
@@ -1375,6 +1389,7 @@ bool    ImFontAtlas::Build()
             if (tmp.Rects[i].was_packed)
                 TexHeight = ImMax(TexHeight, tmp.Rects[i].y + tmp.Rects[i].h);
     }
+    printf("ENTER ImFontAtlas::Build 7\n");
     IM_ASSERT(buf_rects_n == total_glyph_count);
     IM_ASSERT(buf_packedchars_n == total_glyph_count);
     IM_ASSERT(buf_ranges_n == total_glyph_range_count);
@@ -1387,13 +1402,20 @@ bool    ImFontAtlas::Build()
     spc.height = TexHeight;
 
     // Second pass: render characters
+    printf("ENTER ImFontAtlas::Build 8\n");
     for (int input_i = 0; input_i < ConfigData.Size; input_i++)
     {
+    	printf("ENTER ImFontAtlas::Build 9\n");
         ImFontConfig& cfg = ConfigData[input_i];
+        printf("ENTER ImFontAtlas::Build 9.1\n");
         ImFontTempBuildData& tmp = tmp_array[input_i];
+        printf("ENTER ImFontAtlas::Build 9.2\n");
         stbtt_PackSetOversampling(&spc, cfg.OversampleH, cfg.OversampleV);
+        printf("ENTER ImFontAtlas::Build 9.3\n");
         stbtt_PackFontRangesRenderIntoRects(&spc, &tmp.FontInfo, tmp.Ranges, tmp.RangesCount, tmp.Rects);
+        printf("ENTER ImFontAtlas::Build 9.4\n");
         tmp.Rects = NULL;
+        printf("ENTER ImFontAtlas::Build 9.5\n");
     }
 
     // End packing
@@ -1402,8 +1424,10 @@ bool    ImFontAtlas::Build()
     buf_rects = NULL;
 
     // Third pass: setup ImFont and glyphs for runtime
+    printf("ENTER ImFontAtlas::Build 10\n");
     for (int input_i = 0; input_i < ConfigData.Size; input_i++)
     {
+    	printf("ENTER ImFontAtlas::Build 11\n");
         ImFontConfig& cfg = ConfigData[input_i];
         ImFontTempBuildData& tmp = tmp_array[input_i];
         ImFont* dst_font = cfg.DstFont; // We can have multiple input fonts writing into a same destination font (when using MergeMode=true)
@@ -1430,8 +1454,10 @@ bool    ImFontAtlas::Build()
         float off_y = cfg.GlyphOffset.y;
 
         dst_font->FallbackGlyph = NULL; // Always clear fallback so FindGlyph can return NULL. It will be set again in BuildLookupTable()
+        printf("ENTER ImFontAtlas::Build 12\n");
         for (int i = 0; i < tmp.RangesCount; i++)
         {
+        	printf("ENTER ImFontAtlas::Build 13\n");
             stbtt_pack_range& range = tmp.Ranges[i];
             for (int char_idx = 0; char_idx < range.num_chars; char_idx += 1)
             {
@@ -1460,16 +1486,20 @@ bool    ImFontAtlas::Build()
                 dst_font->MetricsTotalSurface += (int)((glyph.U1 - glyph.U0) * TexWidth + 1.99f) * (int)((glyph.V1 - glyph.V0) * TexHeight + 1.99f); // +1 to account for average padding, +0.99 to round
             }
         }
+        printf("ENTER ImFontAtlas::Build 14\n");
         cfg.DstFont->BuildLookupTable();
     }
 
     // Cleanup temporaries
+    printf("ENTER ImFontAtlas::Build 15\n");
     ImGui::MemFree(buf_packedchars);
     ImGui::MemFree(buf_ranges);
     ImGui::MemFree(tmp_array);
 
     // Render into our custom data block
+    printf("ENTER ImFontAtlas::Build 16\n");
     RenderCustomTexData(1, &extra_rects);
+    printf("ENTER ImFontAtlas::Build 17\n");
 
     return true;
 }

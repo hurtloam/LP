@@ -212,11 +212,11 @@ void LPGui::MainMenuBar()
   //  MainMenuBar();
 
 
-
-  if (ImGui::BeginMainMenuBar())
-    {
+  printf("INSIDE MainMenuBar\n");
+  if (ImGui::BeginMainMenuBar()) {
       if (ImGui::BeginMenu("File"))
         {
+//    	  printf("BeginMenu_File\n");
           ShowExampleMenuFile();
           ImGui::EndMenu();
         }
@@ -232,6 +232,7 @@ void LPGui::MainMenuBar()
 //        }
       if (ImGui::BeginMenu("Show"))
         {
+//    	  printf("BeginMenu_Show\n");
           if (ImGui::MenuItem ("Show selected Object Information", NULL,
                                statusOfObjectWindow))
             {
@@ -252,6 +253,7 @@ void LPGui::MainMenuBar()
         }
       if (ImGui::BeginMenu ("Create"))
        {
+//    	  printf("BeginMenu_Create\n");
         if (ImGui::MenuItem ("Create Objects", NULL, statusOfCreateWindow))
          {
           OnGuiWindowCreateObjectsWindow (&statusOfCreateWindow);

@@ -24,7 +24,7 @@ screenHeight = Screens["height1080"]
 -- ----------------------------------------------------------
 --    If multiThreadOn = true, then splash screen will be 
 --    activated.
-multiThreadOn = false 
+multiThreadOn = false
 
 
 -- Log Priority ---------------------------------------------
