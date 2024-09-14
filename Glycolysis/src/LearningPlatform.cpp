@@ -804,9 +804,9 @@ void LearningPlatform::render(double diffTime)
     //    stage_skyBox->draw ();
     //    SDL_Log("After stage->draw() in render()");
     //TRACE_INFO("Before Before imgui\n");
-    //ImGui_ImplSdlGL3_NewFrame(sdl->getWindow(), g_MouseWheel);
+    ImGui_ImplSdlGL3_NewFrame(sdl->getWindow(), g_MouseWheel);
     //TRACE_INFO("Before Before runGui\n");
-    //runGui(show_test_window, show_another_window, show_object_window, clear_color, io);
+    runGui(show_test_window, show_another_window, show_object_window, clear_color, io);
     //TRACE_INFO("After imgui\n");
     //    SDL_Log("After runGui(---) in render()");
 
@@ -1689,6 +1689,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
   else
   {
     // Below is to calculate the view angle when moving the mouse
+	SDL_SetRelativeMouseMode(SDL_bool::SDL_TRUE);
     v->computeMatricesFromInputs(window, mX, mY, relX, relY, Left, Right, Middle);
     view_skyBox->computeMatricesFromInputs(window, mX, mY, relX, relY, Left, Right, Middle);
     if (obj != nullptr || text_obj != nullptr)
@@ -1707,7 +1708,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
       }
       if (move_obj && move_obj_depth) {
         if ((obj->getId() < 61000) || (obj->getId() > 62000 ) ) {
-          TRACE_INFO("obj->getId()=%d", obj->getId());
+//          TRACE_INFO("obj->getId()=%d", obj->getId());
           std::cout << "obj->getId()=" << obj->getId() << std::endl;
           SDL_ShowCursor(SDL_DISABLE);
           obj->setTrans(glm::vec3(0.f, 0.f, -relY * 0.01));
@@ -1715,7 +1716,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
       }
       if (move_text && move_obj_depth) {
         if ((text_obj->getId() < 62000) || (text_obj->getId() > 63000)) {
-          TRACE_INFO("text_obj->getId()=%d", text_obj->getId());
+//          TRACE_INFO("text_obj->getId()=%d", text_obj->getId());
           std::cout << "text_obj->getId()=" << text_obj->getId() << std::endl;
           SDL_ShowCursor(SDL_DISABLE);
           text_obj->setTrans(glm::vec3(0.f, 0.f, -relY * 0.01));
