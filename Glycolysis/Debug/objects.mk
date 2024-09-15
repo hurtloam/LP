@@ -15,7 +15,7 @@ LIBPATHS := \
 -L"$(LP_ROOT)/bullet3/src/BulletCollision" \
 -L"$(LP_ROOT)/bullet3/src/LinearMath" \
 -L"$(LP_ROOT)/Glycolysis/Debug" \
--L"$(LP_ROOT)/assimp-3.3.1/lib"
+-L"$(LP_ROOT)/assimp-5.3.1/lib"
 
 LIBS := -lassimp -lBEvent -lSDL2 -lSDL2_mixer -lopengl32 -lglew32 -lBulletDynamics -lBulletCollision -lLinearMath -lfreetype -llua51 -lm -lz -pthread
 endif
@@ -30,7 +30,7 @@ LIBPATHS := \
 -L"$(LP_ROOT)/bullet3/src/BulletCollision" \
 -L"$(LP_ROOT)/bullet3/src/LinearMath" \
 -L"$(LP_ROOT)/Glycolysis/Debug" \
--L"$(LP_ROOT)/assimp-3.3.1/lib" \
+-L"$(LP_ROOT)/assimp-5.3.1/lib" \
 -L"$(LP_ROOT)/lib"
 
 #-L/MinGW/mingw64/lib \
