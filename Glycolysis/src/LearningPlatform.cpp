@@ -744,7 +744,7 @@ void LearningPlatform::action()
       ((LPObject*) stage->getObject(1000))->setOrientation(glm::vec3(0, view->getHorizontalAngle(), 0));
     }
     else {
-      TRACE_WARN("Object with id=%d does not exist", 1000);
+      TRACE_WARN2("Object with id=%d does not exist", 1000);
     }
   }
   else {
@@ -1482,8 +1482,8 @@ LPObject* LearningPlatform::getObj(int mX, int mY, Stage* stage)
   stage->view.ScreenPosToWorldRay (mX, mY, stage->view.getScreenWidth (),
       stage->view.getScreenHeight(), stage->view.getViewMatrix(), stage->view.getProjectionMatrix(), out_origin, out_direction);
   out_direction = out_direction * 1000.0f;
-  TRACE_DEBUG("out_origin=(%f, %f, %f)", out_origin.x, out_origin.y, out_origin.z);
-  TRACE_DEBUG("out_direction=(%f, %f, %f)", out_direction.x, out_direction.y, out_direction.z);
+  TRACE_DEBUG2("out_origin=(%f, %f, %f)", out_origin.x, out_origin.y, out_origin.z);
+  TRACE_DEBUG2("out_direction=(%f, %f, %f)", out_direction.x, out_direction.y, out_direction.z);
 
   btCollisionWorld::ClosestRayResultCallback RayCallback (
       btVector3 (out_origin.x, out_origin.y, out_origin.z),
@@ -1512,8 +1512,8 @@ LPObject* LearningPlatform::getTextObj(int mX, int mY, Stage * stage)
   stage->view.ScreenPosToWorldRay (mX, mY, stage->view.getScreenWidth (),
       stage->view.getScreenHeight(), stage->view.getViewMatrix(), stage->view.getProjectionMatrix(), out_origin, out_direction);
   out_direction = out_direction * 1000.0f;
-  TRACE_DEBUG("out_origin=(%f, %f, %f)", out_origin.x, out_origin.y, out_origin.z);
-  TRACE_DEBUG("out_direction=(%f, %f, %f)", out_direction.x, out_direction.y, out_direction.z);
+  TRACE_DEBUG2("out_origin=(%f, %f, %f)", out_origin.x, out_origin.y, out_origin.z);
+  TRACE_DEBUG2("out_direction=(%f, %f, %f)", out_direction.x, out_direction.y, out_direction.z);
 
   btCollisionWorld::ClosestRayResultCallback RayCallback (
       btVector3 (out_origin.x, out_origin.y, out_origin.z),
@@ -1708,7 +1708,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
       }
       if (move_obj && move_obj_depth) {
         if ((obj->getId() < 61000) || (obj->getId() > 62000 ) ) {
-//          TRACE_INFO("obj->getId()=%d", obj->getId());
+          TRACE_INFO2("obj->getId()=%d", obj->getId());
           std::cout << "obj->getId()=" << obj->getId() << std::endl;
           SDL_ShowCursor(SDL_DISABLE);
           obj->setTrans(glm::vec3(0.f, 0.f, -relY * 0.01));
@@ -1716,7 +1716,7 @@ void LearningPlatform::OnMouseMove(int mX, int mY, int relX, int relY, bool Left
       }
       if (move_text && move_obj_depth) {
         if ((text_obj->getId() < 62000) || (text_obj->getId() > 63000)) {
-//          TRACE_INFO("text_obj->getId()=%d", text_obj->getId());
+          TRACE_INFO2("text_obj->getId()=%d", text_obj->getId());
           std::cout << "text_obj->getId()=" << text_obj->getId() << std::endl;
           SDL_ShowCursor(SDL_DISABLE);
           text_obj->setTrans(glm::vec3(0.f, 0.f, -relY * 0.01));

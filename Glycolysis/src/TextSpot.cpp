@@ -175,20 +175,20 @@ TextSpot::move(std::vector<std::pair<int, int>> collisionDetected, glm::vec3 nor
   correctPosition = false;
   collisionObj = 0;
   if (collisionDetected.size() > 0) {
-  TRACE_DEBUG("ENTER TextSpot::move(), collisionDetected[0].first=%d, collisionDetected[0].second=%d", collisionDetected[0].first, collisionDetected[0].second);
+  TRACE_DEBUG2("ENTER TextSpot::move(), collisionDetected[0].first=%d, collisionDetected[0].second=%d", collisionDetected[0].first, collisionDetected[0].second);
   }
   int objB;
   for (auto obj : collisionDetected) {
     if (obj.first == this->getId()) {
       objB = obj.second;
-      TRACE_DEBUG("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
+      TRACE_DEBUG2("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
 
               correctPosition = true;
               collisionObj = objB;
     }
     else if (obj.second == this->getId()) {
       objB = obj.first;
-      TRACE_DEBUG("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
+      TRACE_DEBUG2("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
 
       correctPosition = true;
       collisionObj = objB;

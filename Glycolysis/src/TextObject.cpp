@@ -238,8 +238,8 @@ void TextObject::move(std::vector<std::pair<int, int>> collisionDetected, glm::v
   for (auto obj : collisionDetected) {
     if (obj.first == this->getId()) {
       objB = obj.second;
-      TRACE_DEBUG("obj.first=%d, objB=%d, getId=%d", obj.first, objB, getId());
-      TRACE_DEBUG("objB=%d, getId=%d", objB, getId());
+      TRACE_DEBUG2("obj.first=%d, objB=%d, getId=%d", obj.first, objB, getId());
+      TRACE_DEBUG2("objB=%d, getId=%d", objB, getId());
       if ((objB - 61000) == getObjType()) {
         correctPosition = true;
         collisionObj = objB;
@@ -267,36 +267,36 @@ void TextObject::move(std::vector<std::pair<int, int>> collisionDetected, glm::v
     }
     else if (obj.second == getId()) {
       objB = obj.first;
-      TRACE_DEBUG("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
+      TRACE_DEBUG2("obj.first=%d, obj.second=%d, objB=%d, getId=%d, getObjType=%d", obj.first, obj.second, objB, getId(), getObjType());
       if ((objB - 62000) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
       else if ((objB - 62000 - 100) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
       else if ((objB - 62000 - 200) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
       else if ((objB - 62000 - 300) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
       else if ((objB - 62000 - 400) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
       else if ((objB - 62000 - 500) == (getObjType() - 1000)) {
         correctPosition = true;
         collisionObj = objB;
-        TRACE_DEBUG("collisionObj=%d", collisionObj);
+        TRACE_DEBUG2("collisionObj=%d", collisionObj);
       }
     }
   }

@@ -78,9 +78,9 @@ void LPGui::ShowActiveObjects()
     ImGui::Bullet ();
     ImGui::Text ("CollisionFlags: %d", currentObject->getRigidBody ()->getCollisionFlags ());
     ImGui::Bullet ();
-    ImGui::Text ("HitFraction: %d", currentObject->getRigidBody ()->getHitFraction ());
+    ImGui::Text ("HitFraction: %f", currentObject->getRigidBody ()->getHitFraction ());
     ImGui::Bullet ();
-    ImGui::Text ("Margin: %d", currentObject->getRigidBody ()->getCollisionShape ()->getMargin ());
+    ImGui::Text ("Margin: %f", currentObject->getRigidBody ()->getCollisionShape ()->getMargin ());
     ImGui::Bullet ();
     ImGui::Text ("CenterOfMassPosition: (%f, %f, %f)", currentObject->getRigidBody ()->getCenterOfMassPosition ().getX (), currentObject->getRigidBody ()->getCenterOfMassPosition ().getY (),
                  currentObject->getRigidBody ()->getCenterOfMassPosition ().getZ ());
@@ -104,9 +104,9 @@ void LPGui::ShowActiveObjects()
     }
   else
     {
-      ImGui::Text ("");
-      ImGui::Text ("");
-      ImGui::Text ("");
+      ImGui::Text (" ");
+      ImGui::Text (" ");
+      ImGui::Text (" ");
     }
 
   ImGui::End ();
@@ -1282,9 +1282,9 @@ void LPGui::callBrowser(std::string wikiSearch)
 {
   std::string baseUrl("xdg-open http://www.rcsb.org/structure/");
   std::string url = baseUrl + wikiSearch;
-  TRACE_DEBUG("callBrowser - baseUrl = %s", baseUrl.c_str());
-  TRACE_DEBUG("callBrowser - url = %s", url.c_str());
-  TRACE_DEBUG("callBrowser - molecule = %s", wikiSearch.c_str());
+  TRACE_DEBUG2("callBrowser - baseUrl = %s", baseUrl.c_str());
+  TRACE_DEBUG2("callBrowser - url = %s", url.c_str());
+  TRACE_DEBUG2("callBrowser - molecule = %s", wikiSearch.c_str());
 
   system(url.c_str());
 }

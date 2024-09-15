@@ -493,7 +493,7 @@ void GameLogic2::evaluate2() {
     // the colour of the text is changed to green if the molecule is in the right spot
     for (std::size_t i = 0; i < gameState.sequenceList[k]->moleculeList.size(); i++) {
 //      if (stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000) != nullptr /*&& stage->isAnyInCorrectPosition(gameState.sequenceList[k]->moleculeList[i])*/) {
-        TRACE_DEBUG("gameState.sequenceList[%llu]->moleculeList[%llu]=%d", k, i, gameState.sequenceList[k]->moleculeList[i]);
+        TRACE_DEBUG2("gameState.sequenceList[%llu]->moleculeList[%llu]=%d", k, i, gameState.sequenceList[k]->moleculeList[i]);
 
         int collObj = stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000) != nullptr ? stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000)->getCollisionObj() : 0;
         int collObj100 = stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 100) != nullptr ? stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 100)->getCollisionObj() : 0;
@@ -503,47 +503,47 @@ void GameLogic2::evaluate2() {
 
         if (stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 - 100)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 - 100)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 100);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 100);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 + 100)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 100)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 100);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 100);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 + 200)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 200)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 200);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 200);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 - 200)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 - 200)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 200);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 200);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 + 300)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 300)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 300);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 300);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 - 300)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 - 300)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 300);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 300);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 + 400)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 400)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 400);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 400);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 - 400)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 - 400)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 400);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 400);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 + 500)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 500)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 500);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 + 500);
         }
         else if ( stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 61000)->getCollisionObj() == (gameState.sequenceList[k]->moleculeList[i] + 21000 - 500)) {
           stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 - 500)->setColor(resObj.green);
-           TRACE_DEBUG("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 500);
+           TRACE_DEBUG2("id=%d, Turning it green", gameState.sequenceList[k]->moleculeList[i] + 21000 - 500);
         }
         else {
           if (stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000) != nullptr && !stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000)->isCorrectPosition()) {

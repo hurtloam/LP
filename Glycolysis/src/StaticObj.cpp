@@ -384,7 +384,7 @@ void StaticObj::move(bool flag) {
 
 void
 StaticObj::move (std::vector<std::pair<int, int>> collisionDetected, glm::vec3 normal) {
-  TRACE_INFO("ENTER StaticObj::move for object = %d, id = %d, with Trans = (%f,%f,%f)", currentObj, getId(), getTrans().x, getTrans().y, getTrans().z);
+  TRACE_INFO2("ENTER StaticObj::move for object = %d, id = %d, with Trans = (%f,%f,%f)", currentObj, getId(), getTrans().x, getTrans().y, getTrans().z);
   if (resObj.meshArray[currentObj].mesh[0]->m_NumAnimations > 0) {
     float RunningTime = (float) ((double) GetCurrentTimeMillis() - (double) m_startTime) / 1000.0f;
     animTime = currAnimTime;
@@ -397,7 +397,7 @@ StaticObj::move (std::vector<std::pair<int, int>> collisionDetected, glm::vec3 n
 
 void StaticObj::SetBoneTransform(GLuint Index, glm::mat4& Transform)
 {
-  TRACE_INFO("Scene::SetBoneTransform Input parameters : index=%d, MAX_BONES=%d", Index, MAX_BONES);
+  TRACE_INFO2("Scene::SetBoneTransform Input parameters : index=%d, MAX_BONES=%d", Index, MAX_BONES);
   assert(Index < MAX_BONES);
   const GLfloat m[4][4] = { { Transform[0][0], Transform[0][1], Transform[0][2], Transform[0][3] }, { Transform[1][0], Transform[1][1], Transform[1][2], Transform[1][3] }, { Transform[2][0], Transform[2][1], Transform[2][2], Transform[2][3] }, {
       Transform[3][0], Transform[3][1], Transform[3][2], Transform[3][3] } };

@@ -362,27 +362,27 @@ ResObj::loadOBJWithAssimp (const char * path, ObjectType objType, Mesh& mesh)
   }
 
  int noOfBones = 0;
- for (int g = 0; g < resScene->mNumMeshes; g++)
+ for (unsigned int g = 0; g < resScene->mNumMeshes; g++)
   {
 //    for (unsigned int g = 0; g < 2; g++) {
    noOfBones += resScene->mMeshes[g]->mNumBones;
   }
 
  int noOfVertices = 0;
- for (int g = 0; g < resScene->mNumMeshes; g++)
+ for (unsigned int g = 0; g < resScene->mNumMeshes; g++)
   {
 //    for (unsigned int g = 0; g < 2; g++) {
    noOfVertices += resScene->mMeshes[g]->mNumVertices;
   }
 
 //  mesh.name.assign(path);
- TRACE_DEBUG ("loadObj method: Loaded object: %s", path);
- TRACE_DEBUG("number OF MESHES: %d", resScene->mNumMeshes);
- TRACE_DEBUG("number OF TEXTURES: %d", resScene->mNumTextures);
- TRACE_DEBUG("number OF VERTICES: %d", resScene->mMeshes[0]->mNumVertices);
- TRACE_DEBUG("number OF FACES: %d", resScene->mMeshes[0]->mNumFaces);
- TRACE_DEBUG("number OF BONES: %d", noOfBones);
- TRACE_DEBUG("number OF ANIMATIONS: %d", resScene->mNumAnimations);
+ TRACE_DEBUG2("loadObj method: Loaded object: %s", path);
+ TRACE_DEBUG2("number OF MESHES: %d", resScene->mNumMeshes);
+ TRACE_DEBUG2("number OF TEXTURES: %d", resScene->mNumTextures);
+ TRACE_DEBUG2("number OF VERTICES: %d", resScene->mMeshes[0]->mNumVertices);
+ TRACE_DEBUG2("number OF FACES: %d", resScene->mMeshes[0]->mNumFaces);
+ TRACE_DEBUG2("number OF BONES: %d", noOfBones);
+ TRACE_DEBUG2("number OF ANIMATIONS: %d", resScene->mNumAnimations);
  /////////////////////////////////////////////////////////////////
 //  GLuint NumVertices = 0;
 //  for (unsigned int meshCount = 0; meshCount < resScene->mNumMeshes; meshCount++) {
@@ -647,9 +647,9 @@ ResObj::loadStaticObjFiles(const char * objpath, ObjectType objType, const char*
    << meshArray[objType].mesh[0]->vertices[1].b << std::endl;
 
 //  for (std::vector<obj>::iterator* it =  meshArray[objType].begin(); it !=  meshArray[objType].end() ;it++) {
- for (int i = 0; i < meshArray[objType].mesh.size (); i++)
+ for (size_t i = 0; i < meshArray[objType].mesh.size (); i++)
   {
-   TRACE_DEBUG("Start Gen buffers for vertices, i=%d", i);
+   TRACE_DEBUG2("Start Gen buffers for vertices, i=%llu", i);
 
    buffer* buf = new buffer;
    glGenBuffers (1, &buf->vertices);
@@ -658,14 +658,14 @@ ResObj::loadStaticObjFiles(const char * objpath, ObjectType objType, const char*
      GL_ARRAY_BUFFER,
      meshArray[objType].mesh[i]->vertices.size () * sizeof(glm::vec3),
      &meshArray[objType].mesh[i]->vertices[0], GL_STATIC_DRAW);
-   TRACE_DEBUG("Start Gen buffers for uvs, i=%d", i);
+   TRACE_DEBUG2("Start Gen buffers for uvs, i=%llu", i);
    // uvbuffer
    glGenBuffers (1, &(buf->uvs));
    glBindBuffer (GL_ARRAY_BUFFER, buf->uvs);
    glBufferData (GL_ARRAY_BUFFER,
                  meshArray[objType].mesh[i]->uvs.size () * sizeof(glm::vec2),
                  &(meshArray[objType].mesh[i]->uvs[0]), GL_STATIC_DRAW);
-   TRACE_DEBUG("Start Gen buffers for normals, i=%d", i);
+   TRACE_DEBUG2("Start Gen buffers for normals, i=%llu", i);
    // normalbuffer;
    glGenBuffers (1, &(buf->normals));
    glBindBuffer (GL_ARRAY_BUFFER, buf->normals);
@@ -673,7 +673,7 @@ ResObj::loadStaticObjFiles(const char * objpath, ObjectType objType, const char*
      GL_ARRAY_BUFFER,
      meshArray[objType].mesh[i]->normals.size () * sizeof(glm::vec3),
      &(meshArray[objType].mesh[i]->normals[0]), GL_STATIC_DRAW);
-   TRACE_DEBUG("Start Gen buffers for indices, i=%d", i);
+   TRACE_DEBUG2("Start Gen buffers for indices, i=%llu", i);
    // indicesbuffer;
    glGenBuffers (1, &(buf->indices));
    glBindBuffer (GL_ELEMENT_ARRAY_BUFFER, buf->indices);
@@ -683,7 +683,7 @@ ResObj::loadStaticObjFiles(const char * objpath, ObjectType objType, const char*
        * sizeof(meshArray[objType].mesh[i]->indices[0]),
      &(meshArray[objType].mesh[i]->indices[0]), GL_STATIC_DRAW);
 
-   TRACE_DEBUG("Start Gen buffers for bones, i=%d", i);
+   TRACE_DEBUG2("Start Gen buffers for bones, i=%llu", i);
    // bonesbuffer;
    glGenBuffers (1, &(buf->bones));
    glBindBuffer (GL_ARRAY_BUFFER, buf->bones);
@@ -692,16 +692,16 @@ ResObj::loadStaticObjFiles(const char * objpath, ObjectType objType, const char*
      meshArray[objType].mesh[i]->bones.size ()
        * sizeof(meshArray[objType].mesh[i]->bones[0]),
      &(meshArray[objType].mesh[i]->bones[0]), GL_STATIC_DRAW);
-   TRACE_DEBUG("Finished Gen buffers for bones, i=%d", i);
+   TRACE_DEBUG2("Finished Gen buffers for bones, i=%llu", i);
    if (glGetError () != GL_NO_ERROR)
     {
-     TRACE_ERROR("ERROR in OpenGL: OpenGL returned an Error:%d", glGetError());
+     TRACE_ERROR2("ERROR in OpenGL: OpenGL returned an Error:%d", glGetError());
     }
    buf->sizeOfVertices = meshArray[objType].mesh[i]->vertices.size ();
    buf->sizeOfIndices = meshArray[objType].mesh[i]->indices.size ();
-   TRACE_DEBUG("VERTICES SIZE: %d",
+   TRACE_DEBUG2("VERTICES SIZE: %d",
                 buf->sizeOfVertices);
-   TRACE_DEBUG("INDICES SIZE: %d",
+   TRACE_DEBUG2("INDICES SIZE: %d",
                 buf->sizeOfIndices);
    buf->meshColor[0] = meshArray[objType].mesh[i]->meshColor[0];
    buf->meshColor[1] = meshArray[objType].mesh[i]->meshColor[1];
@@ -720,7 +720,7 @@ ResObj::loadTextFile (char *path)
 
  if (file == NULL)
   {
-   TRACE_ERROR("loadTextFile: Impossible to open the file: %s! Are you in the right path ? See Tutorial 1 for details\n", path);
+   TRACE_ERROR2("loadTextFile: Impossible to open the file: %s! Are you in the right path ? See Tutorial 1 for details\n", path);
    getchar ();
    return false;
   }
@@ -763,7 +763,8 @@ ResObj::loadTextFile (char *path)
 
 //    res = fscanf(file, "%s\n", &text);
 //    res = fscanf(file, "%s\n", &wikiName);
-   res = fscanf (file, "%s\n", &font);
+   // Changed from &font to &font[0]. The address/pointer of the first element is &font[0], not &font. /wilbro
+   res = fscanf (file, "%s\n", &font[0]);
    res = fscanf (file, "%d\n\n", &myTxt.size);
    if (res == EOF)
     {
@@ -796,7 +797,7 @@ ResObj::loadText (char * filePath, int screenWidth, int screenHeight)
  // Load all texts from file
  loadTextFile (filePath);
   for (auto l : textList) {
-    //TRACE_DEBUG("Text=%s, wiki=%s, font=%s, size=%d", l.textLine.c_str(), l.wikiName.c_str(), l.fontPath.c_str(), l.size);
+    //TRACE_DEBUG2("Text=%s, wiki=%s, font=%s, size=%d", l.textLine.c_str(), l.wikiName.c_str(), l.fontPath.c_str(), l.size);
   }
  cout << "Finished Loading text from file " << endl;
  int index = 1;
@@ -955,7 +956,7 @@ ResObj::loadFile (std::string fileName, long *count_size)
   }
 
  // copy the file into the buffer:
- size_t result = fread (buffer, 1, lSize, fh);
+ int result = fread (buffer, 1, lSize, fh);
  if (result != lSize)
   {
    fputs ("Reading error", stderr);
@@ -995,7 +996,8 @@ ResObj::loadScene (const char * file_path, list<std::string> *objList)
  do
   {
    char buf[256];
-   scanned = fscanf (file, "%s", &buf);
+   // Changed from &buf to &buf[0]. The address/pointer of the first element is &buf[0], not &buf. /wilbro
+   scanned = fscanf (file, "%s", &buf[0]);
    if (scanned == 1)
     {
      objList->push_back (buf);
@@ -1030,7 +1032,7 @@ VertexBoneData::AddBoneData (GLuint BoneID, float Weight)
      return;
     }
   }
-  TRACE_WARN("VertexBoneData::AddBoneData, we should NOT get here. BoneID = %d, Weight = %f, ARRA_SIZE_IN_ELEMENTS(IDs)=%d",
+  TRACE_WARN2("VertexBoneData::AddBoneData, we should NOT get here. BoneID = %d, Weight = %f, ARRA_SIZE_IN_ELEMENTS(IDs)=%lld",
        BoneID, Weight, ARRAY_SIZE_IN_ELEMENTS(IDs));
 
  // should never get here - more bones than we have space for
@@ -1079,7 +1081,7 @@ ResObj::LoadBones (unsigned int meshCount, const aiMesh* pMesh, obj* mesh,
   }
  for (std::pair<std::string, GLuint> bone : mesh->m_BoneMapping)
   {
-    //TRACE_DEBUG("ResObj::LoadBones: boneName %s, index:%d", bone.first.c_str (), bone.second);
+    //TRACE_DEBUG2("ResObj::LoadBones: boneName %s, index:%d", bone.first.c_str (), bone.second);
   }
 }
 
@@ -1292,7 +1294,7 @@ Mesh::ReadNodeHeirarchy (float AnimationTime, const aiNode* pNode,
  else
   {
    SDL_LogInfo (SDL_LOG_CATEGORY_CUSTOM,
-                "Mesh::ReadNodeHeirarchy, ERROR, meshcount > 0: meshCount=%d",
+                "Mesh::ReadNodeHeirarchy, ERROR, meshcount > 0: meshCount=%lld",
                 mesh.size ());
    exit (1);
   }
@@ -1360,7 +1362,7 @@ Mesh::BoneTransform (float TimeInSeconds, vector<glm::mat4>& Transforms)
                   numBones);
      Transforms.resize (numBones);
      int index = 0;
-     for (int nb = 0; nb < mesh.size (); nb++)
+     for (size_t nb = 0; nb < mesh.size (); nb++)
       {
        for (unsigned int k = 0; k < mesh[nb]->m_BoneInfo.size (); k++)
         {

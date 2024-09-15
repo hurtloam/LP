@@ -284,7 +284,7 @@ LPObject* Scene::getObject(int id)
 			return obj;
 		}
 	}
-  TRACE_DEBUG("failed to find object id=%d", id);
+  TRACE_DEBUG2("failed to find object id=%d", id);
 //  std::cout << "failed to find object id=" << id << ", in actorList" << std::endl;
 //  TRACE_DEBUG("List of all objects: ");
 //  for (auto obj : actorList)
