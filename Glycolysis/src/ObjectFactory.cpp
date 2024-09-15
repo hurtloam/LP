@@ -66,7 +66,7 @@ LPObject* ObjectFactory::createInstance(
 				watch,
 				resObj,
 				view,
-lpUniform);
+				lpUniform);
 	case c_skybox:
 		cout << "c_skybox, we got the correct case" << endl;
     return new SkyBox(id,

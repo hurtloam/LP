@@ -451,10 +451,10 @@ void GameLogic2::check() {
 
 void GameLogic2::evaluate() {
   //  for (struct Sequence* seq : gameState.sequenceList) {
-  for (int k = 0; k < gameState.sequenceList.size(); k++) {
+  for (std::size_t k = 0; k < gameState.sequenceList.size(); k++) {
     if (gameState.sequenceList[k]->assessment == NOT_STARTED || gameState.sequenceList[k]->assessment == FAILED) {
       gameState.sequenceList[k]->assessment = SUCCESS;
-      for (int i = 0; i < gameState.sequenceList[k]->moleculeList.size(); i++) {
+      for (std::size_t i = 0; i < gameState.sequenceList[k]->moleculeList.size(); i++) {
         if (static_cast<MenuContainer *>(stage->getTextObject(gameState.sequenceList[k]->moleculeList[i]+35000))->getMenuItemObjectType(0) != gameState.sequenceList[k]->moleculeList[i]) {
 //          std::cout << "ID=" << gameState.sequenceList[k]->moleculeList[i]+35000 << ", MenuItemID=" << (int)(static_cast<MenuContainer *>(stage->getTextObject(gameState.sequenceList[k]->moleculeList[i]+35000))->getMenuItemObjectType(0)) << std::endl;
           gameState.sequenceList[k]->assessment = FAILED;
@@ -464,7 +464,7 @@ void GameLogic2::evaluate() {
         (static_cast<Arrow *>(stage->getObject(c_arrow + 1 + k)))->setColorStatus(ColorStates::S_BLUE);
         k++;
         cout << "k= " << k << endl;
-        for (int j = 0; j < gameState.sequenceList[k]->moleculeList.size(); j++) {
+        for (std::size_t j = 0; j < gameState.sequenceList[k]->moleculeList.size(); j++) {
           cout << "Next SEQ ITEM ID = " << gameState.sequenceList[k]->moleculeList[j] + 35000 << endl;
           (static_cast<MenuContainer *>(stage->getTextObject(gameState.sequenceList[k]->moleculeList[j] + 35000)))->setStatus(LPObject::MenuStatusE::DEFAULT);
         }
@@ -486,14 +486,14 @@ void GameLogic2::evaluate() {
 
 void GameLogic2::evaluate2() {
   bool showIt = true;
-  for (int k = 0; k < gameState.sequenceList.size(); k++) {
+  for (std::size_t k = 0; k < gameState.sequenceList.size(); k++) {
     gameState.sequenceList[k]->assessment = SUCCESS;
 
     // Checking the textual molecules, looping over the moleculeList for each sequence
     // the colour of the text is changed to green if the molecule is in the right spot
-    for (int i = 0; i < gameState.sequenceList[k]->moleculeList.size(); i++) {
+    for (std::size_t i = 0; i < gameState.sequenceList[k]->moleculeList.size(); i++) {
 //      if (stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000) != nullptr /*&& stage->isAnyInCorrectPosition(gameState.sequenceList[k]->moleculeList[i])*/) {
-        TRACE_DEBUG("gameState.sequenceList[%d]->moleculeList[%d]=%d", k, i, gameState.sequenceList[k]->moleculeList[i]);
+        TRACE_DEBUG("gameState.sequenceList[%llu]->moleculeList[%llu]=%d", k, i, gameState.sequenceList[k]->moleculeList[i]);
 
         int collObj = stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000) != nullptr ? stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000)->getCollisionObj() : 0;
         int collObj100 = stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 100) != nullptr ? stage->getTextObject(gameState.sequenceList[k]->moleculeList[i] + 21000 + 100)->getCollisionObj() : 0;
@@ -662,8 +662,8 @@ void GameLogic2::evaluate2() {
 
           // Checking the 3d molecule objects, looping over the moleculeObjects list for each sequence,
           // there is no colouring change done on these,
-          for (int j = 0; j < gameState.sequenceList[k]->moleculeObjects.size(); j++) {
-            for (int v = 0; v < moleculePosList.size(); v++) {
+          for (std::size_t j = 0; j < gameState.sequenceList[k]->moleculeObjects.size(); j++) {
+            for (std::size_t v = 0; v < moleculePosList.size(); v++) {
               if (moleculePosList[v].id == gameState.sequenceList[k]->moleculeObjects[j]) {
                 if (!stage->getObject(gameState.sequenceList[k]->moleculeObjects[j])->isCorrectPosition()) {
                   gameState.sequenceList[k]->assessment = FAILED;

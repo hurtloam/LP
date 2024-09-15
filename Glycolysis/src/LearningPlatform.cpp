@@ -673,7 +673,7 @@ void LearningPlatform::action()
             LPObject* obAObject = (LPObject*) (obA->getUserPointer());
             LPObject* obBObject = (LPObject*) (obB->getUserPointer());
             if (obAObject != nullptr && obBObject != nullptr) {
-              SDL_LogDebug(SDL_LOG_CATEGORY_CUSTOM, "#contacts: %d, normal: (%f,%f), contactPoint distance = %f", pt.m_normalWorldOnB.getX(), pt.m_normalWorldOnB.getZ(), numContacts, contactManifold->getContactPoint(j).getDistance());
+              SDL_LogDebug(SDL_LOG_CATEGORY_CUSTOM, "#contacts: %f, normal: (%f,%d), contactPoint distance = %f", pt.m_normalWorldOnB.getX(), pt.m_normalWorldOnB.getZ(), numContacts, contactManifold->getContactPoint(j).getDistance());
               collisionDetected.push_back(std::pair<int, int>(obAObject->getId(), obBObject->getId()));
               normalOnB = pt.m_normalWorldOnB;
             }

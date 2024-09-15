@@ -39,8 +39,8 @@ public:
   }
 private:
   Scene *scene;
-  View* view;
   LPWatch* watch;
+  View* view;
   LineObj *line;
   int debugMode;
 };

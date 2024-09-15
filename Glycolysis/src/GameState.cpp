@@ -12,7 +12,7 @@ GameState::GameState() {
 }
 
 void GameState::reset() {
-	for (int i = 0; i < sequenceList.size(); i++) {
+	for (std::size_t i = 0; i < sequenceList.size(); i++) {
 		sequenceList[i]->moleculeList.clear();
 		delete sequenceList[i];
 		sequenceList.clear();
@@ -21,7 +21,7 @@ void GameState::reset() {
 }
 
 GameState::~GameState() {
-  for (int i = 0; i < sequenceList.size(); i++) {
+  for (std::size_t i = 0; i < sequenceList.size(); i++) {
     sequenceList[i]->moleculeList.clear();
     delete sequenceList[i];
     sequenceList.clear();
@@ -194,7 +194,7 @@ struct Sequence* GameState::createSequence(int& id, string& name, std::vector<Ob
 }
 
 bool GameState::isWinning() {
-  for (int k = 0; k < sequenceList.size(); k++) {
+  for (std::size_t k = 0; k < sequenceList.size(); k++) {
 //  for (int k = 0; k < 1; k++) {
     if (sequenceList[k]->assessment != SUCCESS) {
       winningStatus = W_DEFAULT;
@@ -205,10 +205,10 @@ bool GameState::isWinning() {
     winningStatus = W_ALREADY_WON;
     return true;
   }
-//  else
-//  {
-//    return false;
-//  }
+  else
+  {
+    return false;
+  }
 }
 
 
