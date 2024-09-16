@@ -17,7 +17,7 @@
 #include "../../../inc/ResObj.h"
 
 
-class StageMock : public StageIf{
+class StageMock : public StageIf {
   public:
     MOCK_METHOD0(draw, void());
     MOCK_METHOD0(move, void());
@@ -62,6 +62,8 @@ class StageMock : public StageIf{
 
     MOCK_METHOD4(createMolecule, void(glm::vec3 pos,
                                  string mInfo1, string mInfo2, string mInfo3));
+    MOCK_METHOD6(createMoleculeSpot, void(int id, ObjectType obj, glm::vec3 shape, glm::vec3 scale, int texture, glm::vec3 pos));
+
     MOCK_METHOD3(createGlucose6Phosphate, void(glm::vec3 pos, int id, GLuint local_texture));
     MOCK_METHOD3(createFructosePhosphate, void(glm::vec3 pos, int id, GLuint local_texture));
     MOCK_METHOD3(createHexokinase, void(glm::vec3 pos, int id, GLuint local_texture));

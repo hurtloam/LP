@@ -547,7 +547,7 @@ void LearningPlatform::init()
 
 
 
-  m_startTime = GetCurrentTimeMillis();
+//  m_startTime = GetCurrentTimeMillis();
 
   //	Logger logger;
 }
@@ -625,7 +625,7 @@ int LearningPlatform::execute()
       //        (stage_skyBox->getDynamicsWorld ())->stepSimulation (diffTime / (1000.0f), 3);
       float distance = 100.0;
       float currAnimTime;
-      float RunningTime = (float) ((double) GetCurrentTimeMillis() - (double) m_startTime) / 1000.0f;
+//      float RunningTime = (float) ((double) GetCurrentTimeMillis() - (double) m_startTime) / 1000.0f;
       TRACE_INFO("Before action()");
       action();
 

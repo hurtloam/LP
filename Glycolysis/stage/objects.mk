@@ -3,7 +3,6 @@
 ################################################################################
 
 USER_OBJS :=
-#LIBS := -lSDL2 -lglew -lGLEW -llibGLEW -lGL
 ifeq ($(OPER_SYS), WINNT)
 CPPFLAGS := -mwin32
 
@@ -17,7 +16,7 @@ LIBPATHS := \
 -L"$(LP_ROOT)/Glycolysis/Debug" \
 -L"$(LP_ROOT)/assimp-5.3.1/lib"
 
-LIBS := -lassimp -lBEvent -lSDL2 -lSDL2_mixer -lopengl32 -lglew32 -lBulletDynamics -lBulletCollision -lLinearMath -lfreetype -llua51 -lm -lz -pthread
+LIBS := -lassimp -lBEvent -lSDL2 -lSDL2_mixer -lopengl32 -lglew32 -lBulletDynamics -lBulletCollision -lLinearMath -lm -lz -pthread
 endif
 
 ifeq ($(OPER_SYS),LINUX)
@@ -35,7 +34,7 @@ LIBPATHS := \
 
 # -L/MinGW/mingw64/lib \
 
-LIBS := -lassimp -lBEvent -lSDL2 -lSDL2_mixer-2.0 -lGL -lGLEW -lBulletDynamics -lBulletCollision -lLinearMath -lfreetype -llua -ldl -lm -pthread
+LIBS := -lassimp -lBEvent -lSDL2 -lSDL2_mixer-2.0 -lGL -lGLEW -lBulletDynamics -lBulletCollision -lLinearMath -llua -ldl -lm -pthread
 endif
 
 

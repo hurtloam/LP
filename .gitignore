@@ -8,3 +8,7 @@
 *.d
 Glycolysis/resources/obj/medieval/labyrinth/Labyrinth_all.fbx
 *.project
+-MT
+*.exe
+.settings
+*.*~
